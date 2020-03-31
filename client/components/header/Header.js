@@ -1,7 +1,7 @@
 import { Input } from "antd";
 
 import Nav from "../nav/Nav";
-import StyledHeader, { StyledSearch } from "./styles";
+import StyledHeader, { StyledSearch, Logo } from "./styles";
 import SubNav from "../nav/SubNav";
 
 const { Search } = Input;
@@ -10,11 +10,12 @@ const Header = () => {
   return (
     <StyledHeader>
       <div className="bar">
+        <Logo></Logo>
         <StyledSearch>
           <Search
-            placeholder="input search text"
+            placeholder="Trouver un article"
             onSearch={value => console.log(value)}
-            style={{ width: 500 }}
+            style={{ width: 500, borderRadius: "1em" }}
           />
         </StyledSearch>
         <Nav />
