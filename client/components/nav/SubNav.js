@@ -3,8 +3,8 @@ import NavStyles from "./styles";
 
 const SubNav = () => {
   return (
-    <NavStyles subNav>
-      <Link href="woman-category">
+    <NavStyles>
+      <Link href="women-category">
         <a>Femmes</a>
       </Link>
       <Link href="men-category">
