@@ -8,8 +8,88 @@
     "start": "next start"
   },
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^4.1.0",
+    "babel-plugin-import": "^1.13.0",
+    "babel-plugin-styled-components": "^1.10.7",
     "next": "9.3.2",
+    "null-loader": "^3.0.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "styled-components": "^5.0.1"
+  },
+  "babel": {
+    "env": {
+      "development": {
+        "presets": [
+          "next/babel"
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ],
+          [
+            "import",
+            {
+              "libraryName": "antd",
+              "style": "css"
+            }
+          ]
+        ]
+      },
+      "production": {
+        "presets": [
+          "next/babel"
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ],
+          [
+            "import",
+            {
+              "libraryName": "antd",
+              "style": "css"
+            }
+          ]
+        ]
+      },
+      "test": {
+        "presets": [
+          [
+            "next/babel",
+            {
+              "preset-env": {
+                "modules": "commonjs"
+              }
+            }
+          ]
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ],
+          [
+            "import",
+            {
+              "libraryName": "antd",
+              "style": "css"
+            }
+          ]
+        ]
+      }
+    }
   }
 }
