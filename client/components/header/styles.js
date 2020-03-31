@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const StyledSearch = styled.div`
+  padding: 1em 3em;
+`;
+
 const StyledHeader = styled.header`
   .bar {
     border-bottom: 1px solid ${props => props.theme.black};

@@ -4,17 +4,17 @@ const NavStyles = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
-  justify-self: end;
+  justify-self: start;
   font-size: 1rem;
   a,
   button {
-    padding: 1rem 3rem;
+    padding: 1rem 1rem;
     display: flex;
     text-decoration: none;
     color: black;
     align-items: flex-end;
     position: relative;
-    font-weight: 600;
+    font-weight: 550;
     font-size: 1em;
     background: none;
     border: 0;
@@ -33,28 +33,6 @@ const NavStyles = styled.ul`
       transform: skew(-20deg);
       top: 0;
       bottom: 0;
-    }
-    &:after {
-      height: 2px;
-      background: #09b1ba;
-      content: "";
-      width: 0;
-      position: absolute;
-      transform: translateX(-50%);
-      transition: width 0.4s;
-      transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
-      left: 50%;
-      margin-top: 2rem;
-    }
-    &:hover,
-    &:focus {
-      outline: none;
-      &:after {
-        width: calc(100% - 60px);
-      }
-      @media (max-width: 700px) {
-        width: calc(100% - 10px);
-      }
     }
   }
   @media (max-width: 1300px) {
