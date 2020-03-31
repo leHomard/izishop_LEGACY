@@ -14,9 +14,9 @@ export const Logo = styled.div`
 
 const StyledHeader = styled.header`
   .bar {
-    border-bottom: 1px solid ${props => props.theme.black};
+    border-bottom: 5px solid ${props => props.theme.blue};
     display: flex;
-    background-color: #f6f6f6;
+    background-color: ${props => props.theme.lightgrey};
     justify-content: center;
     align-items: stretch;
     @media (max-width: 1300px) {
