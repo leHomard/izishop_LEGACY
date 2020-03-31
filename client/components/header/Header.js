@@ -1,4 +1,5 @@
 import { Input } from "antd";
+import Link from "next/link";
 
 import Nav from "../nav/Nav";
 import StyledHeader, { StyledSearch, Logo } from "./styles";
@@ -10,7 +11,11 @@ const Header = () => {
   return (
     <StyledHeader>
       <div className="bar">
-        <Logo></Logo>
+        <Logo>
+          <Link href="/">
+            <a>Vinted-Clone</a>
+          </Link>
+        </Logo>
         <StyledSearch>
           <Search
             placeholder="Trouver un article"
