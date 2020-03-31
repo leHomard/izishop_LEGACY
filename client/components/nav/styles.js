@@ -14,10 +14,11 @@ const NavStyles = styled.ul`
     font-size: 1em;
     border: 0;
     cursor: pointer;
-    @media (max-width: 700px) {
-      font-size: 10px;
-      padding: 0 10px;
-    }
+  }
+  @media (max-width: 700px) {
+    font-size: 10px;
+    padding: 0 10px;
+  }
   @media (max-width: 1300px) {
     border-top: 1px solid ${props => props.theme.lightgrey};
     width: 100%;

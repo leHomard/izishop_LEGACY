@@ -1,3 +1,5 @@
-const Home = () => <p>Here all the items</p>;
+import Items from "../components/items/Items";
+
+const Home = () => <Items />;
 
 export default Home;
