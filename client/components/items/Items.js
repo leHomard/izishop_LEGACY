@@ -1,5 +1,14 @@
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import styled from "styled-components";
+
+import Item from "./Item";
+
+const ItemsList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2rem;
+`;
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
@@ -21,7 +30,13 @@ const Items = () => {
 
   console.log("data : ", data);
 
-  return <p>Here are all the Items</p>;
+  return (
+    <ItemsList>
+      {data.allItems.map(el => (
+        <Item key={el.id} />
+      ))}
+    </ItemsList>
+  );
 };
 
 export default Items;
