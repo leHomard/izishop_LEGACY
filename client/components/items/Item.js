@@ -1,22 +1,26 @@
 import { Card } from "antd";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const { Meta } = Card;
 
-const Item = () => {
+const StyledCard = styled(Card)`
+  width: 240px;
+  height: 400px;
+`;
+
+const Item = ({ size, description, imgUrl }) => {
   return (
-    <Card
-      hoverable
-      style={{ width: 240, height: 400 }}
-      cover={
-        <img
-          alt="image"
-          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-        />
-      }
-    >
-      <Meta title="M" description="Chemise" />
-    </Card>
+    <StyledCard hoverable cover={<img alt="image" src={imgUrl} />}>
+      <Meta title={size} description={description} />
+    </StyledCard>
   );
+};
+
+Item.propTypes = {
+  size: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string.isRequired
 };
 
 export default Item;
