@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/omar-harras-df65b3/vinted-clone/dev
-# timestamp: Mon Mar 30 2020 17:51:32 GMT+0200 (Central European Summer Time)
+# timestamp: Wed Apr 01 2020 13:56:00 GMT+0200 (Central European Summer Time)
 
 type AggregateItem {
   count: Int!
@@ -713,4 +713,5 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }
