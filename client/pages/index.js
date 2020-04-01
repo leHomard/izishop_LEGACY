@@ -1,9 +1,5 @@
-import Page from "../components/Page";
+import Items from "../components/items/Items";
 
-const Home = () => (
-  <Page>
-    <p>Here all the items</p>
-  </Page>
-);
+const Home = () => <Items />;
 
 export default Home;

@@ -17,7 +17,7 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
+  width: 80%;
   margin: 0 auto;
   padding: 2rem;
 `;

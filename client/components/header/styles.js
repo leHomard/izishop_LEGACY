@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
 export const StyledSearch = styled.div`
-  padding: 2em;
+  padding: 0.7em;
   width: 700px;
 `;
 
 export const Logo = styled.div`
   width: 150px;
   height: 50px;
-  margin: 1em;
-  border: 1px solid black;
+  margin: 0.8em 1em;
 `;
 
 const StyledHeader = styled.header`
   .bar {
+    height: 80px;
     border-bottom: 5px solid ${props => props.theme.blue};
     display: flex;
     background-color: ${props => props.theme.lightgrey};
