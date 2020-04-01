@@ -1,17 +1,40 @@
 type User {
   id: ID! @id
-  name: String!
+  firstName: String!
+  lastName: String!
+  userName: String @unique
   email: String! @unique
+  profilePicture: String
+  location: Location
+  items: [Item]
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
+type Location {
+  id: ID! @id,
+  number: Int!
+  street: String!
+  city: String!
+  country: String!
+  postalCode: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
 
 type Item {
-  id: ID! @id
+  id: ID! @id @unique
   title: String!
   description: String!
-  image: String
-  largeImage: String
+  imageUrl: String!
   price: Int!
+  type: String!
+  category: String!
+  size: String!
+  color: String!
+  brand: String!
+  nbViews: Int
+  nbInterested: Int
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
