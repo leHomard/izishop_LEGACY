@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/omar-harras-df65b3/vinted-clone/dev
-# timestamp: Thu Apr 02 2020 12:45:21 GMT+0200 (Central European Summer Time)
+# timestamp: Thu Apr 02 2020 16:23:50 GMT+0200 (Central European Summer Time)
 
 type AggregateItem {
   count: Int!
@@ -1641,8 +1641,8 @@ type Subscription {
 
 type User implements Node {
   id: ID!
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   password: String!
   token: String
   tokenExpiry: Float
@@ -1650,6 +1650,7 @@ type User implements Node {
   email: String!
   profilePicture: String
   items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item!]
+  isAdmin: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1666,14 +1667,15 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   password: String!
   token: String
   tokenExpiry: Float
   userName: String
   email: String!
   profilePicture: String
+  isAdmin: Boolean
   items: ItemCreateManyInput
 }
 
@@ -1705,6 +1707,8 @@ enum UserOrderByInput {
   email_DESC
   profilePicture_ASC
   profilePicture_DESC
+  isAdmin_ASC
+  isAdmin_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1713,14 +1717,15 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   password: String!
   token: String
   tokenExpiry: Float
   userName: String
   email: String!
   profilePicture: String
+  isAdmin: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1771,6 +1776,7 @@ input UserUpdateInput {
   userName: String
   email: String
   profilePicture: String
+  isAdmin: Boolean
   items: ItemUpdateManyInput
 }
 
@@ -1783,6 +1789,7 @@ input UserUpdateManyMutationInput {
   userName: String
   email: String
   profilePicture: String
+  isAdmin: Boolean
 }
 
 input UserWhereInput {
@@ -2136,6 +2143,10 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   profilePicture_not_ends_with: String
+  isAdmin: Boolean
+
+  """All values that are not equal to given value."""
+  isAdmin_not: Boolean
   createdAt: DateTime
 
   """All values that are not equal to given value."""

@@ -1,8 +1,12 @@
+const cookieParser = require("cookie-parser");
 require("dotenv").config({ path: ".env" });
 
 const createServer = require("./createServer");
 
 const server = createServer();
+
+// Middleware to handle JWT cookies
+server.express.use(cookieParser());
 
 server.start(
   {
