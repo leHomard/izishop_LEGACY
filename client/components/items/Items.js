@@ -34,6 +34,7 @@ const Items = () => {
       {data.allItems.map(el => (
         <Item
           key={el.id}
+          id={el.id}
           size={el.title}
           description={el.description}
           imgUrl="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
