@@ -8,14 +8,13 @@ type User {
   userName: String @unique
   email: String! @unique
   profilePicture: String
-  location: Location
   items: [Item]
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
 type Location {
-  id: ID! @id,
+  id: ID! @id
   number: Int!
   street: String!
   city: String!
@@ -38,6 +37,7 @@ type Item {
   description: String!
   imageUrl: String!
   price: Int!
+  location: Location
   type: String!
   categories: [Category]! @scalarList(strategy: RELATION)
   size: String!
