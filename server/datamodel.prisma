@@ -1,17 +1,50 @@
 type User {
   id: ID! @id
-  name: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  token: String @unique
+  tokenExpiry: Float
+  userName: String @unique
   email: String! @unique
+  profilePicture: String
+  items: [Item]
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
+type Location {
+  id: ID! @id
+  number: Int!
+  street: String!
+  city: String!
+  country: String!
+  postalCode: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+enum Category {
+  WOMEN
+  MEN
+  CHILDREN
+  HOME
+}
 
 type Item {
-  id: ID! @id
+  id: ID! @id @unique
   title: String!
   description: String!
-  image: String
-  largeImage: String
+  imageUrl: String!
   price: Int!
+  location: Location
+  type: String!
+  categories: [Category]! @scalarList(strategy: RELATION)
+  size: String!
+  color: String!
+  brand: String!
+  nbViews: Int
+  nbInterested: Int
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
