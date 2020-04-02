@@ -8,6 +8,8 @@ type Mutation {
     image: String
     largeImage: String
   ): Item!
+
+  signup(userName: String!, email: String!, password: String!): User!
 }
 
 type Query {
