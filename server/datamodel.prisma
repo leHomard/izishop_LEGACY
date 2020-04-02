@@ -3,6 +3,8 @@ type User {
   firstName: String!
   lastName: String!
   password: String!
+  token: String
+  tokenExpiry: Float
   userName: String @unique
   email: String! @unique
   profilePicture: String
@@ -23,6 +25,13 @@ type Location {
   updatedAt: DateTime! @updatedAt
 }
 
+enum Category {
+  WOMEN
+  MEN
+  CHILDREN
+  HOME
+}
+
 type Item {
   id: ID! @id @unique
   title: String!
@@ -30,7 +39,7 @@ type Item {
   imageUrl: String!
   price: Int!
   type: String!
-  category: String!
+  categories: [Category]! @scalarList(strategy: RELATION)
   size: String!
   color: String!
   brand: String!
