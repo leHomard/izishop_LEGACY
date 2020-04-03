@@ -1,9 +1,10 @@
 import { Input } from "antd";
 import Link from "next/link";
-
 import Nav from "../nav/Nav";
 import StyledHeader, { StyledSearch, Logo } from "./styles";
 import SubNav from "../nav/SubNav";
+import Router from 'next/router';
+
 
 const { Search } = Input;
 
@@ -19,7 +20,7 @@ const Header = () => {
         <StyledSearch>
           <Search
             placeholder="Trouver un article"
-            onSearch={value => console.log(value)}
+            onSearch={value => Router.push(`/search/${value}`)}
             style={{ width: 500, borderRadius: "1em" }}
           />
         </StyledSearch>
