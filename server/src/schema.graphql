@@ -12,4 +12,5 @@ type Mutation {
 
 type Query {
   allItems: [Item]!
+  searchItems(description : String! title : String  ) : [Item] 
 }

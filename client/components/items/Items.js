@@ -21,17 +21,10 @@ const ALL_ITEMS_QUERY = gql`
     }
   }
 `;
-
-const Items = () => {
-  const { data, loading, error } = useQuery(ALL_ITEMS_QUERY);
-  if (!data || error) return <p>error...</p>;
-  if (loading) return <p>Loading...</p>;
-
-  console.log("data : ", data);
-
+export const printProductList = (itemArray) => {
   return (
     <ItemsList>
-      {data.allItems.map(el => (
+      {itemArray.map((el) => (
         <Item
           key={el.id}
           size={el.title}
@@ -42,5 +35,13 @@ const Items = () => {
     </ItemsList>
   );
 };
+const Items = () => {
+  const { data, loading, error } = useQuery(ALL_ITEMS_QUERY);
+  if (!data || error) return <p>error...</p>;
+  if (loading) return <p>Loading...</p>;
 
+  console.log("data : ", data);
+
+  return printProductList(data.allItems);
+};
 export default Items;
