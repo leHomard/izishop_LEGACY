@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Item from "./Item";
 
-export const ItemsList = styled.div`
+const ItemsList = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 2rem;
