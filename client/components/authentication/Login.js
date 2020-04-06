@@ -14,33 +14,33 @@ const Login = () => {
   return (
     <StyledForm {...layout}>
       <h2>Login</h2>
-      <Item>
+      <Item style={{ marginBottom: "0" }}>
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
           placeholder="Username"
         />
       </Item>
-      <Item style={{ marginBottom: "-5px;" }}>
+      <Item>
         <Input
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
         />
       </Item>
-      <Item>
+      <Item style={{ marginTop: "-2.2em" }}>
         <Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Se souvenir de moi</Checkbox>
+          <Checkbox className="checkbox">Se souvenir de moi</Checkbox>
         </Item>
-
-        <a className="login-form-forgot" href="">
-          Mot de passe oublié
-        </a>
       </Item>
-      <Item>
+      <Item style={{ marginTop: "-1em" }}>
         <Button type="primary" htmlType="submit">
           Login
         </Button>
       </Item>
+      <div className="links">
+        <a href="">S'inscrire</a>
+        <a href="">Mot de passe oublié</a>
+      </div>
     </StyledForm>
   );
 };

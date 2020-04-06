@@ -17,9 +17,20 @@ export const StyledForm = styled(Form)`
   }
   a {
     float: right;
+    font-size: 12px;
   }
   button {
     width: 300px;
+  }
+  .links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -2em;
+    font-size: 12px;
+  }
+  .checkbox {
+    font-size: 12px;
+    margin-bottom: 2px;
   }
 `;
 
