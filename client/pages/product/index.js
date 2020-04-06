@@ -1,3 +1,3 @@
-import Product from "./product";
+import Product from "./[id]";
 
 export default Product;

@@ -5,9 +5,16 @@
   "author": "Hachim <hac.remini@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "lerna run start:dev --stream"
+    "start": "lerna run start:dev --stream",
+    "build": "lerna run build --stream"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm build"
+    }
   },
   "devDependencies": {
+    "husky": "^4.2.3",
     "lerna": "^3.13.1"
   }
 }
