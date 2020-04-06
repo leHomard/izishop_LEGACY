@@ -6,15 +6,18 @@ import gql from "graphql-tag";
 
 import { StyledForm } from "./styles";
 import useForm from "../../hooks/useForm";
+import { displayFormError } from "../../lib/utils";
 
 const { Item } = StyledForm;
 
+// layout for the form wrapper
 const layout = {
   wrapperCol: {
     span: 24,
   },
 };
 
+// Call the signup mutation, to create a user in db
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
     $username: String!
@@ -33,24 +36,27 @@ const Signup = () => {
   const { values, handleChange, setValues } = useForm();
   const [signup, { error, loading, data }] = useMutation(SIGNUP_MUTATION);
 
+  console.table([data, loading, error]);
+
   const onSubmit = async () => {
     event.preventDefault();
+
+    // pass values of the form to the signup mutation
     await signup({
       variables: values,
     });
-    console.table("Success ", values);
     setValues({});
   };
 
-  const errorMessage = "Veuillez remplir tous les champs";
   return (
     <StyledForm onFinish={onSubmit} {...layout}>
       <h2>Signup</h2>
       <Item
         className="inputs"
         name="username"
-        hasFeedback
-        rules={[{ required: true, message: errorMessage }]}
+        rules={[
+          { required: true, message: () => displayFormError("username") },
+        ]}
       >
         <Input
           onChange={handleChange}
@@ -64,8 +70,7 @@ const Signup = () => {
       <Item
         className="inputs"
         name="email"
-        hasFeedback
-        rules={[{ required: true, message: errorMessage }]}
+        rules={[{ required: true, message: () => displayFormError("email") }]}
       >
         <Input
           onChange={handleChange}
@@ -77,9 +82,10 @@ const Signup = () => {
         />
       </Item>
       <Item
-        hasFeedback
         name="password"
-        rules={[{ required: true, message: errorMessage }]}
+        rules={[
+          { required: true, message: () => displayFormError("password") },
+        ]}
       >
         <Input
           onChange={handleChange}
