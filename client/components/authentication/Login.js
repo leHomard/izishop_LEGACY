@@ -1,6 +1,8 @@
-import { Form, Input, Checkbox, Button } from "antd";
+import { Input, Checkbox, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { StyledForm, StyledInput, StyledDiv } from "./styles";
+import Link from "next/link";
+
+import { StyledForm } from "./styles";
 
 const { Item } = StyledForm;
 
@@ -14,23 +16,22 @@ const Login = () => {
   return (
     <StyledForm {...layout}>
       <h2>Login</h2>
-      <Item style={{ marginBottom: "0" }}>
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
-        />
+      <Item className="inputs">
+        <Input prefix={<UserOutlined />} type="email" placeholder="email" />
       </Item>
       <Item>
         <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
+          prefix={<LockOutlined />}
           type="password"
           placeholder="Password"
         />
       </Item>
-      <Item style={{ marginTop: "-2.2em" }}>
-        <Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox className="checkbox">Se souvenir de moi</Checkbox>
-        </Item>
+      <Item
+        name="remember"
+        valuePropName="checked"
+        style={{ marginTop: "-2.2em" }}
+      >
+        <Checkbox className="checkbox">Se souvenir de moi</Checkbox>
       </Item>
       <Item style={{ marginTop: "-1em" }}>
         <Button type="primary" htmlType="submit">
@@ -38,8 +39,12 @@ const Login = () => {
         </Button>
       </Item>
       <div className="links">
-        <a href="">S'inscrire</a>
-        <a href="">Mot de passe oublié</a>
+        <Link href="signup">
+          <a>S'inscrire</a>
+        </Link>
+        <Link href="">
+          <a>Mot de passe oublié</a>
+        </Link>
       </div>
     </StyledForm>
   );
