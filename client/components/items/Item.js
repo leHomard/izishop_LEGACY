@@ -23,7 +23,12 @@ const Item = ({ size, description, imgUrl, id }) => {
 Item.propTypes = {
   size: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imgUrl: PropTypes.string.isRequired
+  imgUrl: PropTypes.string.isRequired,
+  id: PropTypes.number
+};
+
+Item.defaultProps = {
+  id: 0
 };
 
 export default Item;
