@@ -1,4 +1,4 @@
-import { Form, Input } from "antd";
+import { Form } from "antd";
 import styled from "styled-components";
 
 export const StyledForm = styled(Form)`
@@ -22,6 +22,12 @@ export const StyledForm = styled(Form)`
   button {
     width: 300px;
   }
+  .btn {
+    margin-top: 1rem;
+  }
+  .inputs {
+    margin-bottom: 0;
+  }
   .links {
     display: flex;
     justify-content: space-between;
@@ -32,9 +38,7 @@ export const StyledForm = styled(Form)`
     font-size: 12px;
     margin-bottom: 2px;
   }
-`;
-
-export const StyledInput = styled(Input)`
-  margin: 0 auto;
-  width: 300px;
+  .checkboxItem {
+    margin-top: -2.2rem;
+  }
 `;
