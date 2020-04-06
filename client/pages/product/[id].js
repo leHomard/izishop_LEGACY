@@ -1,7 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
-import { QUERY_GET_BY_PRODUCT_ID } from "./constant";
 import styled from "styled-components";
 import gql from "graphql-tag";
 
