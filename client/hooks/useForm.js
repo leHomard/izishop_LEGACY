@@ -1,15 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export const useForm = () => {
-  const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+const useForm = () => {
+  const [values, setValues] = useState({});
 
-  useEffect(() => {}, [value, loading, error]);
+  function handleChange(e) {
+    const { name, value } = e.target;
+    e.preventDefault();
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  }
 
   return {
-    value,
-    loading,
-    error,
+    values,
+    handleChange,
+    setValues,
   };
 };
+
+export default useForm;
