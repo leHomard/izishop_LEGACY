@@ -1,18 +1,30 @@
 import withApollo from "next-with-apollo";
-import ApolloClient from "apollo-boost";
+import { ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
+import { onError } from "apollo-link-error";
+import { createUploadLink } from "apollo-upload-client";
 import { endpoint } from "../config";
 
-function createClient({ headers }) {
+function createClient({ headers, initialState }) {
   return new ApolloClient({
-    uri: process.env === "development" ? endpoint : endpoint,
-    request: operation => {
-      operation.setContext({
+    link: ApolloLink.from([
+      onError(({ graphQLErrors, networkError }) => {
+        if (graphQLErrors)
+          graphQLErrors.forEach(({ message, locations, path }) =>
+            console.log(
+              `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+            )
+          );
+        if (networkError) console.log(`[Network error]: ${networkError}`);
+      }),
+      createUploadLink({
+        uri: process.env.NODE_ENV === "development" ? endpoint : prodEndpoint,
         fetchOptions: {
-          credentials: "include"
+          credentials: "include",
         },
-        headers
-      });
-    }
+        headers,
+      }),
+    ]),
+    cache: new InMemoryCache().restore(initialState || {}),
   });
 }
 

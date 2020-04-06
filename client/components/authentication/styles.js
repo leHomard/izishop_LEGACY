@@ -38,7 +38,4 @@ export const StyledForm = styled(Form)`
     font-size: 12px;
     margin-bottom: 2px;
   }
-  .checkboxItem {
-    margin-top: -2.2rem;
-  }
 `;
