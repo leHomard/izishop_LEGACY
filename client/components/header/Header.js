@@ -8,6 +8,11 @@ import Router from 'next/router';
 
 const { Search } = Input;
 
+const handleSearch = (value) => {
+  if(value)
+    return Router.push(`/search/${value}`);
+}
+
 const Header = () => {
   return (
     <StyledHeader>
@@ -20,7 +25,7 @@ const Header = () => {
         <StyledSearch>
           <Search
             placeholder="Trouver un article"
-            onSearch={value => Router.push(`/search/${value}`)}
+            onSearch={value => handleSearch(value)}
             style={{ width: 500, borderRadius: "1em" }}
           />
         </StyledSearch>

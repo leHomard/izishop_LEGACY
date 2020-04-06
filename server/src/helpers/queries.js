@@ -1,9 +1,9 @@
-const searchItemsQuery = async (args,ctx,info) => await ctx.db.query.items(
+const searchTermQuery = async (args,ctx,info) => await ctx.db.query.items(
   {
     where: {
       OR: [
         { description_contains: args.description },
-        { title_contains : args.title}
+        { title_contains : args.description}
       ],
     },
   },
@@ -11,4 +11,4 @@ const searchItemsQuery = async (args,ctx,info) => await ctx.db.query.items(
 );
 
 
-exports.searchItemsQuery = searchItemsQuery;
+exports.searchTermQuery = searchTermQuery;

@@ -6,8 +6,8 @@ const Query = {
     const items = await ctx.db.query.items();
     return items;
   },
-  async searchItems(parent, args, ctx, info) {
-    return await queries.searchItemsQuery(args,ctx,info);
+  async searchTerm(parent, args, ctx, info) {
+    return await queries.searchTermQuery(args,ctx,info);
   }
   
 };

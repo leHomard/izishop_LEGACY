@@ -5,7 +5,7 @@ import { printProductList } from "../../components/items/Items";
 
 const ITEMS_SEARCH_QUERY = gql`
   query ITEMS_SEARCH_QUERY($description: String!) {
-    searchItems(description: $description) {
+    searchTerm(description: $description) {
       id
       title
       description
@@ -16,13 +16,14 @@ const ITEMS_SEARCH_QUERY = gql`
 `;
 const ProductList = () => {
   const router = useRouter();
-  const { descr } = router.query;
+  const term = router.query.searchTerm;
+  
   const { data, loading, error } = useQuery(ITEMS_SEARCH_QUERY, {
-    variables: { description: descr },
+    variables: { description: term },
   });
   if (!data || error) return <p>Aucun article trouvé</p>;
   if (loading) return <p>Loading...</p>;
-  return printProductList(data.searchItems);
+  return printProductList(data.searchTerm);
 };
 
 export default ProductList;
