@@ -10,6 +10,7 @@ type User {
   profilePicture: String
   items: [Item]
   isAdmin: Boolean! @default(value: false)
+  isActivated: Boolean @default(value: false)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
