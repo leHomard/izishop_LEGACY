@@ -8,7 +8,7 @@ const mutations = {
     const userName = args.userName;
     // hash the passeord
     const password = await bcrypt.hash(args.password, 10);
-    const newUser = context.db.mutation.createUser(
+    const newUser = await context.db.mutation.createUser(
       {
         data: {
           ...args,
@@ -18,7 +18,6 @@ const mutations = {
       },
       info
     );
-
     // Generate jWT token
     generateToken(context, newUser.id);
     return newUser;
