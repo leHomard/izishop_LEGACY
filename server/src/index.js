@@ -1,5 +1,5 @@
-const cookieParser = require("cookie-parser");
 require("dotenv").config({ path: ".env" });
+const cookieParser = require("cookie-parser");
 
 const createServer = require("./createServer");
 
@@ -12,11 +12,11 @@ server.start(
   {
     cors: {
       credentials: true,
-      // origin: process.env.FRONTEND_URL,
-      origin: ["http://localhost:3000"]
-    }
+      origin: process.env.FRONTEND_URL,
+      origin: ["http://localhost:3000"],
+    },
   },
-  deets => {
+  (deets) => {
     console.log(`server running on port http://localhost:${deets.port}`);
   }
 );

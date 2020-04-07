@@ -6,7 +6,7 @@ const Query = {
   getItemById: async (parent, { id }, ctx, info) => {
     const item = await ctx.db.query.item({ where: { id } }, info);
     return item;
-  }
+  },
 };
 
 module.exports = Query;
