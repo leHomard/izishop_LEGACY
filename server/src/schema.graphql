@@ -30,4 +30,5 @@ type User {
   userName: String!
   email: String!
   isAdmin: Boolean!
+  isVerified: Boolean!
 }

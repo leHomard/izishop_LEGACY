@@ -34,7 +34,7 @@ const mutations = {
         to: newUser.email,
         subject: "Account verification",
         html: emailTemplate(`
-        <a href="${process.env.FRONTEND_URL}/verify?tempToken=${tempToken}">
+        <a href="${process.env.FRONTEND_URL}verify?tempToken=${tempToken}">
           Click here to verify your account
         </a>`),
       });
@@ -70,6 +70,9 @@ const mutations = {
       },
       info
     );
+
+    // TODO : send welcome email
+
     // return user
     return updatedUser;
   },
