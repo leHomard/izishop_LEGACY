@@ -1,5 +1,5 @@
 import { Input, Checkbox, Button } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 import { StyledForm } from "./styles";
@@ -17,7 +17,7 @@ const Login = () => {
     <StyledForm {...layout}>
       <h2>Login</h2>
       <Item className="inputs">
-        <Input prefix={<UserOutlined />} type="email" placeholder="email" />
+        <Input prefix={<MailOutlined />} type="email" placeholder="email" />
       </Item>
       <Item>
         <Input
