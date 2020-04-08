@@ -4,7 +4,8 @@ type User {
   lastName: String
   password: String!
   token: String @unique
-  tokenExpiry: Float
+  tempToken: String @unique
+  resetTokenExpiry: Float
   userName: String @unique
   email: String! @unique
   profilePicture: String
