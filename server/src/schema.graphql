@@ -1,5 +1,9 @@
 # import * from './generated/prisma.graphql'
 
+type SuccessMessage {
+  message: String
+}
+
 type Mutation {
   createItem(
     title: String
@@ -8,11 +12,23 @@ type Mutation {
     image: String
     largeImage: String
   ): Item!
-
-  signup(userName: String!, email: String!, password: String!): User!
+  signup(
+    userName: String!
+    email: String!
+    password: String!
+    tempToken: String
+  ): User!
+  verifyAccount(email: String!, tempToken: String!): User!
 }
 
 type Query {
   allItems: [Item]!
   getItemById(id: ID!): Item!
+}
+
+type User {
+  id: ID!
+  userName: String!
+  email: String!
+  isAdmin: Boolean!
 }
