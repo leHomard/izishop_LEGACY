@@ -25,6 +25,7 @@ type Mutation {
 type Query {
   allItems: [Item]!
   getItemById(id: ID!): Item!
+  me(userName: String!): User!
 }
 
 type User {
