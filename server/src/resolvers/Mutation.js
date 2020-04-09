@@ -3,6 +3,7 @@ const { randomBytes } = require("crypto");
 const { promisify } = require("util");
 
 const { transport, emailTemplate } = require("../lib/accountVerification");
+const generateToken = require("../lib/generateToken");
 
 const mutations = {
   async signup(parent, args, context, info) {
@@ -75,6 +76,28 @@ const mutations = {
 
     // return user
     return updatedUser;
+  },
+
+  async signin(parent, { email, password }, context, info) {
+    // check if the user exist and his password
+    const user = await context.db.query.user({ where: { email } });
+    const valid = bcrypt.compare(password, user.password);
+
+    // return error if no user
+    if (!user || !valid) {
+      throw new Error("Incorrect email or password");
+    }
+
+    //check if the user's account is verified
+    if (!user.isVerified) {
+      throw new Error("please verify your account");
+    }
+
+    // generate token
+    generateToken(context, user.id);
+
+    // return the user
+    return user;
   },
 
   // TODO check if the user is logged in

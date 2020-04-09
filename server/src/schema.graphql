@@ -19,6 +19,7 @@ type Mutation {
     tempToken: String
   ): User!
   verifyAccount(email: String!, tempToken: String!): User!
+  signin(email: String!, password: String!): User!
 }
 
 type Query {
