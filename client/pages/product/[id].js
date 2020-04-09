@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import styled from "styled-components";
 import gql from "graphql-tag";
 
@@ -25,7 +25,7 @@ const QUERY_GET_BY_PRODUCT_ID = gql`
 const Product = () => {
   const { query } = useRouter();
   const { data, loading, error } = useQuery(QUERY_GET_BY_PRODUCT_ID, {
-    variables: { id: query.id }
+    variables: { id: query.id },
   });
   const item = data && data.getItemById;
 

@@ -24,11 +24,11 @@ Item.propTypes = {
   size: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
-  id: PropTypes.number
+  id: PropTypes.string,
 };
 
 Item.defaultProps = {
-  id: 0
+  id: "0",
 };
 
 export default Item;
