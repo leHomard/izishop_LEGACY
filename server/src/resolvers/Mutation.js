@@ -81,10 +81,15 @@ const mutations = {
   async signin(parent, { email, password }, context, info) {
     // check if the user exist and his password
     const user = await context.db.query.user({ where: { email } });
-    const valid = bcrypt.compare(password, user.password);
 
-    // return error if no user
-    if (!user || !valid) {
+    // return erro if no user found
+    if (!user) {
+      throw new Error("Incorrect email or password");
+    }
+    const valid = await bcrypt.compare(password, user.password);
+
+    // return error if password do not match
+    if (!valid) {
       throw new Error("Incorrect email or password");
     }
 
