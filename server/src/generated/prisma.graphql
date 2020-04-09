@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/omar-harras-df65b3/vinted-clone/dev
-# timestamp: Thu Apr 02 2020 12:45:21 GMT+0200 (Central European Summer Time)
+# timestamp: Wed Apr 08 2020 21:55:36 GMT+0200 (Central European Summer Time)
 
 type AggregateItem {
   count: Int!
@@ -1641,15 +1641,18 @@ type Subscription {
 
 type User implements Node {
   id: ID!
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   password: String!
   token: String
-  tokenExpiry: Float
+  tempToken: String
+  resetTokenExpiry: Float
   userName: String
   email: String!
   profilePicture: String
   items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item!]
+  isAdmin: Boolean!
+  isVerified: Boolean
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1666,14 +1669,17 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   password: String!
   token: String
-  tokenExpiry: Float
+  tempToken: String
+  resetTokenExpiry: Float
   userName: String
   email: String!
   profilePicture: String
+  isAdmin: Boolean
+  isVerified: Boolean
   items: ItemCreateManyInput
 }
 
@@ -1697,14 +1703,20 @@ enum UserOrderByInput {
   password_DESC
   token_ASC
   token_DESC
-  tokenExpiry_ASC
-  tokenExpiry_DESC
+  tempToken_ASC
+  tempToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
   userName_ASC
   userName_DESC
   email_ASC
   email_DESC
   profilePicture_ASC
   profilePicture_DESC
+  isAdmin_ASC
+  isAdmin_DESC
+  isVerified_ASC
+  isVerified_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1713,14 +1725,17 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   password: String!
   token: String
-  tokenExpiry: Float
+  tempToken: String
+  resetTokenExpiry: Float
   userName: String
   email: String!
   profilePicture: String
+  isAdmin: Boolean!
+  isVerified: Boolean
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1767,10 +1782,13 @@ input UserUpdateInput {
   lastName: String
   password: String
   token: String
-  tokenExpiry: Float
+  tempToken: String
+  resetTokenExpiry: Float
   userName: String
   email: String
   profilePicture: String
+  isAdmin: Boolean
+  isVerified: Boolean
   items: ItemUpdateManyInput
 }
 
@@ -1779,10 +1797,13 @@ input UserUpdateManyMutationInput {
   lastName: String
   password: String
   token: String
-  tokenExpiry: Float
+  tempToken: String
+  resetTokenExpiry: Float
   userName: String
   email: String
   profilePicture: String
+  isAdmin: Boolean
+  isVerified: Boolean
 }
 
 input UserWhereInput {
@@ -1994,28 +2015,68 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   token_not_ends_with: String
-  tokenExpiry: Float
+  tempToken: String
 
   """All values that are not equal to given value."""
-  tokenExpiry_not: Float
+  tempToken_not: String
 
   """All values that are contained in given list."""
-  tokenExpiry_in: [Float!]
+  tempToken_in: [String!]
 
   """All values that are not contained in given list."""
-  tokenExpiry_not_in: [Float!]
+  tempToken_not_in: [String!]
 
   """All values less than the given value."""
-  tokenExpiry_lt: Float
+  tempToken_lt: String
 
   """All values less than or equal the given value."""
-  tokenExpiry_lte: Float
+  tempToken_lte: String
 
   """All values greater than the given value."""
-  tokenExpiry_gt: Float
+  tempToken_gt: String
 
   """All values greater than or equal the given value."""
-  tokenExpiry_gte: Float
+  tempToken_gte: String
+
+  """All values containing the given string."""
+  tempToken_contains: String
+
+  """All values not containing the given string."""
+  tempToken_not_contains: String
+
+  """All values starting with the given string."""
+  tempToken_starts_with: String
+
+  """All values not starting with the given string."""
+  tempToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  tempToken_ends_with: String
+
+  """All values not ending with the given string."""
+  tempToken_not_ends_with: String
+  resetTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  resetTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  resetTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  resetTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  resetTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  resetTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  resetTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  resetTokenExpiry_gte: Float
   userName: String
 
   """All values that are not equal to given value."""
@@ -2136,6 +2197,14 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   profilePicture_not_ends_with: String
+  isAdmin: Boolean
+
+  """All values that are not equal to given value."""
+  isAdmin_not: Boolean
+  isVerified: Boolean
+
+  """All values that are not equal to given value."""
+  isVerified_not: Boolean
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -2188,6 +2257,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   token: String
+  tempToken: String
   userName: String
   email: String
 }

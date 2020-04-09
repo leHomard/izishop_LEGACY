@@ -1,14 +1,17 @@
 type User {
   id: ID! @id
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   password: String!
   token: String @unique
-  tokenExpiry: Float
+  tempToken: String @unique
+  resetTokenExpiry: Float
   userName: String @unique
   email: String! @unique
   profilePicture: String
   items: [Item]
+  isAdmin: Boolean! @default(value: false)
+  isVerified: Boolean @default(value: false)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

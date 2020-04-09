@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import styled from "styled-components";
 
 import Item from "./Item";
@@ -27,11 +27,9 @@ const Items = () => {
   if (!data || error) return <p>error...</p>;
   if (loading) return <p>Loading...</p>;
 
-  console.log("data : ", data);
-
   return (
     <ItemsList>
-      {data.allItems.map(el => (
+      {data.allItems.map((el) => (
         <Item
           key={el.id}
           id={el.id}
