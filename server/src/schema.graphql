@@ -33,3 +33,11 @@ type User {
   isAdmin: Boolean!
   isVerified: Boolean!
 }
+
+type User {
+  id: ID!
+  userName: String!
+  email: String!
+  isAdmin: Boolean!
+  isVerified: Boolean!
+}
