@@ -7,12 +7,16 @@ const Query = {
     const item = await ctx.db.query.item({ where: { id } }, info);
     return item;
   },
-  me: async (parent, { userName }, context, info) => {
-    const user = await context.db.query.user({ where: { userName } });
-    if (!user) {
-      throw new Error("query me : user not found");
+  me(parent, args, context, info) {
+    if (!context.request.userId) {
+      throw new Error("test error");
     }
-    return user;
+    return context.db.query.user(
+      {
+        where: { id: context.request.userId },
+      },
+      info
+    );
   },
 };
 

@@ -4,8 +4,10 @@ import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
+import { useRouter } from "next/router";
 
 import { StyledForm } from "./styles";
+import { QUERY_USER_INFO } from "../../hooks/useFetchUser";
 
 const { Item } = StyledForm;
 
@@ -27,18 +29,25 @@ const SIGNIN_MUTATION = gql`
 `;
 
 const Login = () => {
+  const router = useRouter();
   const [emailValue, setEmailValue] = useState("");
   const [pwdValue, setPwdValue] = useState("");
-  const [signin, { error, loading, data, called }] = useMutation(
-    SIGNIN_MUTATION,
-    {
-      variables: {
-        email: emailValue,
-        password: pwdValue,
+  const [signin, { data }] = useMutation(SIGNIN_MUTATION, {
+    variables: {
+      email: emailValue,
+      password: pwdValue,
+    },
+    refetchQueries: [
+      {
+        query: QUERY_USER_INFO,
       },
-    }
-  );
-  console.log("called : ", called);
+    ],
+  });
+
+  if (data) {
+    router.push("/");
+  }
+
   return (
     <StyledForm {...layout}>
       <h2>Login</h2>

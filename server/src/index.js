@@ -13,7 +13,8 @@ server.express.use((req, res, next) => {
   const { token } = req.cookies;
   if (token) {
     const { userId } = jwt.verify(token, process.env.APP_SECRET);
-    console.log("token ; ", userId);
+    req.userId = userId;
+    console.log("user Id : ", req.userId);
   }
   next();
 });
