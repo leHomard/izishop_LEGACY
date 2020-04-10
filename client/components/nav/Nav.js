@@ -47,7 +47,7 @@ const Nav = () => {
           </Item>
         </Menu>
       )}
-      {!currentUser.data && (
+      {currentUser && !currentUser.data && (
         <Menu>
           <Menu.Item>
             <a>ARTICLES</a>
