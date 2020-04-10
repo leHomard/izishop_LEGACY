@@ -20,12 +20,13 @@ type Mutation {
   ): User!
   verifyAccount(email: String!, tempToken: String!): User!
   signin(email: String!, password: String!): User!
+  signout: SuccessMessage
 }
 
 type Query {
   allItems: [Item]!
   getItemById(id: ID!): Item!
-  me: User!
+  me: User
 }
 
 type User {

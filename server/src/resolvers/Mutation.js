@@ -105,6 +105,12 @@ const mutations = {
     return user;
   },
 
+  async signout(parent, args, context, info) {
+    // remove token from the cookies
+    context.response.clearCookie("token");
+    return { message: "signed out" };
+  },
+
   // TODO check if the user is logged in
   async createItem(parent, args, context, info) {
     const item = await context.db.mutation.createItem(

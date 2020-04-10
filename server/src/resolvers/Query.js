@@ -9,7 +9,7 @@ const Query = {
   },
   me(parent, args, context, info) {
     if (!context.request.userId) {
-      throw new Error("test error");
+      return null;
     }
     return context.db.query.user(
       {

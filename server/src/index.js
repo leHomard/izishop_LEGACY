@@ -14,7 +14,6 @@ server.express.use((req, res, next) => {
   if (token) {
     const { userId } = jwt.verify(token, process.env.APP_SECRET);
     req.userId = userId;
-    console.log("user Id : ", req.userId);
   }
   next();
 });

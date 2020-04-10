@@ -1,4 +1,7 @@
+import { Menu } from "antd";
 import styled from "styled-components";
+
+const { Item, SubMenu } = Menu;
 
 const NavStyles = styled.ul`
   display: flex;
@@ -20,11 +23,22 @@ const NavStyles = styled.ul`
     padding: 0 10px;
   }
   @media (max-width: 1300px) {
-    border-top: 1px solid ${props => props.theme.lightgrey};
+    border-top: 1px solid ${(props) => props.theme.lightgrey};
     width: 100%;
     justify-content: center;
     font-size: 1.5rem;
   }
+`;
+
+export const StyledSubMenu = styled(SubMenu)`
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  font-weight: 550;
+  font-size: 1em;
+  border: 0;
+  cursor: pointer;
 `;
 
 export default NavStyles;
