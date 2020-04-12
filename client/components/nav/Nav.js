@@ -1,13 +1,22 @@
-import { Menu } from "antd";
+import { Menu, Avatar } from "antd";
 import Link from "next/link";
-import NavStyles, { StyledSubMenu } from "./styles";
+import StyledMenu, { StyledSubMenu } from "./styles";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
+import {
+  HeartOutlined,
+  MailOutlined,
+  QuestionCircleOutlined,
+  BellOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 import { useFetchUser } from "../../hooks/useFetchUser";
 import { QUERY_USER_INFO } from "../../hooks/useFetchUser";
+import { Fragment } from "react";
+import BtnComp from "../UI/Button";
 
-const { Item } = Menu;
+const { Item, SubMenu } = Menu;
 
 const SIGNOUT_MUTATION = gql`
   mutation SIGNOUT_MUTATION {
@@ -24,42 +33,73 @@ const Nav = () => {
   });
 
   return (
-    <NavStyles>
+    <Fragment>
       {currentUser && currentUser.data && (
-        <Menu style={{ backgroundColor: "#f6f6f6" }} mode="horizontal">
-          <StyledSubMenu
-            title={<span>{currentUser.data.userName.toUpperCase()}</span>}
+        <StyledMenu mode="horizontal">
+          <Item className="modified-item">
+            <BtnComp
+              type="primary"
+              shape="round"
+              btnValue="Ajouter des articles"
+            />
+          </Item>
+          <SubMenu
+            style={{ padding: "0" }}
+            className="modified-item"
+            title={
+              <Avatar
+                size="small"
+                shape="circle"
+                style={{ backgroundColor: "#2194ff" }}
+                icon={<UserOutlined />}
+              />
+            }
           >
             <Item key="setting:1">Profil</Item>
             <Item key="setting:2">
               <a onClick={signout}>Se déconnecter</a>
             </Item>
-          </StyledSubMenu>
-          <Item>
-            <Link href="history">
-              <a>HISTORIQUE</a>
-            </Link>
-          </Item>
+          </SubMenu>
           <Item>
             <Link href="favorites">
-              <a>FAVORIS</a>
+              <HeartOutlined
+                style={{ paddingTop: "0.6em", fontSize: "22px" }}
+              />
             </Link>
           </Item>
-        </Menu>
+          <Item>
+            <Link href="history">
+              <MailOutlined style={{ paddingTop: "0.6em", fontSize: "22px" }} />
+            </Link>
+          </Item>
+          <Item>
+            <Link href="history">
+              <BellOutlined style={{ paddingTop: "0.6em", fontSize: "22px" }} />
+            </Link>
+          </Item>
+        </StyledMenu>
       )}
       {currentUser && !currentUser.data && (
-        <Menu>
-          <Menu.Item>
+        <StyledMenu>
+          <Item>
             <a>ARTICLES</a>
-          </Menu.Item>
-          <Menu.Item>
+          </Item>
+          <Item>
             <Link href="login">
-              <a>LOGIN</a>
+              <BtnComp
+                type="primary"
+                shape="round"
+                onClick={() => console.log("ok")}
+                btnValue="Rejoingnez nous"
+              />
             </Link>
-          </Menu.Item>
-        </Menu>
+          </Item>
+          <Item>
+            <QuestionCircleOutlined style={{ fontSize: "20px" }} />
+          </Item>
+        </StyledMenu>
       )}
-    </NavStyles>
+    </Fragment>
   );
 };
 
