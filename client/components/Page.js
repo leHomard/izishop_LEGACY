@@ -1,6 +1,7 @@
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Header from "./header/Header";
 import Meta from "./Meta";
+import SubNav from "./nav/SubNav";
 
 const theme = {
   blue: "#2194ff",
@@ -8,18 +9,17 @@ const theme = {
   grey: "#3A3A3A",
   lightgrey: "#f6f6f6",
   offWhite: "#EDEDED",
-  maxWidth: "1000px"
+  maxWidth: "1000px",
 };
 
 const StyledPage = styled.div`
   background: white;
-  color: ${props => props.theme.black};
+  color: ${(props) => props.theme.black};
 `;
 
 const Inner = styled.div`
   width: 80%;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 12rem auto;
 `;
 
 const GlobalStyles = createGlobalStyle`
@@ -38,7 +38,7 @@ const GlobalStyles = createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: ${theme.black};
+    color: ${(props) => props.theme.black};
   }
 `;
 const Page = ({ children }) => {
@@ -48,6 +48,7 @@ const Page = ({ children }) => {
         <GlobalStyles />
         <Meta />
         <Header />
+        <SubNav />
         <Inner>{children}</Inner>
       </StyledPage>
     </ThemeProvider>

@@ -1,44 +1,34 @@
 import { Menu } from "antd";
 import styled from "styled-components";
 
-const { Item, SubMenu } = Menu;
-
-const NavStyles = styled.ul`
+const StyledMenu = styled(Menu)`
+  background-color: ${(props) => props.theme.lightgrey};
+  margin: 0.4em 0 0 0;
+  padding: 0;
   display: flex;
-  justify-self: start;
-  font-size: 1rem;
-  a,
-  button {
-    padding: 1rem 1rem;
+  li {
+    padding: 0 1rem 0;
+  }
+  .modified-item:hover {
+    border-bottom: 2px solid transparent !important;
+  }
+`;
+
+export const SubNavbar = styled.nav`
+  margin-top: 5rem;
+  position: fixed;
+  height: 55px;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+  ul {
     display: flex;
-    align-items: flex-end;
-    position: relative;
-    font-weight: 550;
-    font-size: 1em;
-    border: 0;
-    cursor: pointer;
-  }
-  @media (max-width: 700px) {
-    font-size: 10px;
-    padding: 0 10px;
-  }
-  @media (max-width: 1300px) {
-    border-top: 1px solid ${(props) => props.theme.lightgrey};
-    width: 100%;
+    border-bottom: 2px solid transparent !important;
     justify-content: center;
-    font-size: 1.5rem;
+  }
+  .modified-item:hover {
+    border-bottom: 2px solid transparent !important;
   }
 `;
 
-export const StyledSubMenu = styled(SubMenu)`
-  padding: 1rem 1rem;
-  display: flex;
-  align-items: flex-end;
-  position: relative;
-  font-weight: 550;
-  font-size: 1em;
-  border: 0;
-  cursor: pointer;
-`;
-
-export default NavStyles;
+export default StyledMenu;
