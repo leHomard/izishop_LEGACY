@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 
 import Nav from "../nav/Nav";
+import DrawerToggleButton from "../UI/DrawerToggleButton";
 import StyledHeader, {
   SearchBarDiv,
   Logo,
@@ -27,6 +28,7 @@ const Header = () => {
           </SearchBarDiv>
           <Nav />
         </StyledNav>
+        <DrawerToggleButton />
       </StyledHeader>
     </Fragment>
   );

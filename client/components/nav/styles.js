@@ -12,6 +12,9 @@ const StyledMenu = styled(Menu)`
   .modified-item:hover {
     border-bottom: 2px solid transparent !important;
   }
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const SubNavbar = styled.nav`

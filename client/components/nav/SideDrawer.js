@@ -1,6 +1,6 @@
 import { Drawer } from "antd";
 
-const DrawerComp = ({ children, visible, title }) => {
+const SideDrawer = ({ children, visible, title }) => {
   return (
     <Drawer visible={visible} title={title} placement="right">
       {children}
@@ -8,4 +8,4 @@ const DrawerComp = ({ children, visible, title }) => {
   );
 };
 
-export default DrawerComp;
+export default SideDrawer;
