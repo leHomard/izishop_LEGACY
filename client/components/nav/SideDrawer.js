@@ -1,10 +1,21 @@
 import { Drawer } from "antd";
+import styled from "styled-components";
 
-const SideDrawer = ({ children, visible, title }) => {
+const StyledDrawer = styled(Drawer)``;
+
+const SideDrawer = ({ children, visible, title, onClose }) => {
   return (
-    <Drawer visible={visible} title={title} placement="right">
+    <StyledDrawer
+      width={"100vw"}
+      visible={visible}
+      onClose={onClose}
+      title={title}
+      placement="right"
+      closable
+      mask={false}
+    >
       {children}
-    </Drawer>
+    </StyledDrawer>
   );
 };
 

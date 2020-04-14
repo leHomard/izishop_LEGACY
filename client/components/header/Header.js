@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 
 import Nav from "../nav/Nav";
@@ -9,8 +9,10 @@ import StyledHeader, {
   StyledNav,
   StyledSearch,
 } from "./styles";
+import SideDrawer from "../nav/SideDrawer";
 
 const Header = () => {
+  const [visible, setVisible] = useState(false);
   return (
     <Fragment>
       <StyledHeader>
@@ -28,7 +30,12 @@ const Header = () => {
           </SearchBarDiv>
           <Nav />
         </StyledNav>
-        <DrawerToggleButton />
+        <DrawerToggleButton onClick={() => setVisible(true)} />
+        <SideDrawer
+          title="Test"
+          visible={visible}
+          onClose={() => setVisible(false)}
+        />
       </StyledHeader>
     </Fragment>
   );
