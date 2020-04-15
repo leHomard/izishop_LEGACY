@@ -1,5 +1,9 @@
-import { Menu } from "antd";
+import { Menu, Drawer } from "antd";
 import styled from "styled-components";
+
+export const StyledDrawer = styled(Drawer)`
+  width: 100%;
+`;
 
 const StyledMenu = styled(Menu)`
   background-color: ${(props) => props.theme.lightgrey};
@@ -11,6 +15,9 @@ const StyledMenu = styled(Menu)`
   }
   .modified-item:hover {
     border-bottom: 2px solid transparent !important;
+  }
+  @media (max-width: 1024px) {
+    display: none;
   }
 `;
 

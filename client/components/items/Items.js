@@ -1,14 +1,8 @@
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
-import styled from "styled-components";
+import ItemsList from "./styles";
 
 import Item from "./Item";
-
-const ItemsList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 2rem;
-`;
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
