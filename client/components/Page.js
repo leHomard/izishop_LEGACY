@@ -19,7 +19,7 @@ const StyledPage = styled.div`
 
 const Inner = styled.div`
   width: 80%;
-  margin: 12rem auto;
+  margin: 10rem auto;
 `;
 
 const GlobalStyles = createGlobalStyle`
