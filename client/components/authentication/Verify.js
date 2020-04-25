@@ -30,15 +30,12 @@ const VERIFY_ACCOUNT_MUTATION = gql`
 
 const Verify = (props) => {
   const [value, setValue] = useState("");
-  const [verifyAccount, { error, loading, data }] = useMutation(
-    VERIFY_ACCOUNT_MUTATION,
-    {
-      variables: {
-        email: value,
-        tempToken: props.tempToken,
-      },
-    }
-  );
+  const [verifyAccount] = useMutation(VERIFY_ACCOUNT_MUTATION, {
+    variables: {
+      email: value,
+      tempToken: props.tempToken,
+    },
+  });
   return (
     <StyledForm {...layout}>
       <h2>Valider votre compte</h2>

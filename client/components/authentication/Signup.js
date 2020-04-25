@@ -34,9 +34,7 @@ const SIGNUP_MUTATION = gql`
 
 const Signup = () => {
   const { values, handleChange, setValues } = useForm();
-  const [signup, { error, loading, data }] = useMutation(SIGNUP_MUTATION);
-
-  console.table([data, loading, error]);
+  const [signup] = useMutation(SIGNUP_MUTATION);
 
   const onSubmit = async () => {
     event.preventDefault();

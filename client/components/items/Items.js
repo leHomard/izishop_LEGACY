@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import ItemsList from "./styles";
 
 import Item from "./Item";
+import { useState } from "react";
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
@@ -27,6 +28,7 @@ const Items = () => {
         <Item
           key={el.id}
           id={el.id}
+          loading={loading}
           size={el.title}
           description={el.description}
           imgUrl="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"

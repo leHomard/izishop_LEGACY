@@ -1,4 +1,5 @@
 const withCss = require("@zeit/next-css");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = withCss({
   webpack: (config, { isServer }) => {
@@ -14,14 +15,22 @@ module.exports = withCss({
             callback();
           }
         },
-        ...(typeof origExternals[0] === "function" ? [] : origExternals)
+        ...(typeof origExternals[0] === "function" ? [] : origExternals),
       ];
+
+      config.plugins.push(
+        new MiniCssExtractPlugin({
+          filename: "[name].css",
+          chunkFilename: "[id].css",
+          ignoreOrder: true, // Enable to remove warnings about conflicting order
+        })
+      );
 
       config.module.rules.unshift({
         test: antStyles,
-        use: "null-loader"
+        use: "null-loader",
       });
     }
     return config;
-  }
+  },
 });
