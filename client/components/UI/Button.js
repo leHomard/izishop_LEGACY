@@ -1,4 +1,5 @@
 import { Button } from "antd";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledButton = styled(Button)`
@@ -12,6 +13,13 @@ const BtnComp = ({ btnValue, onClick, type, shape }) => {
       {btnValue}
     </StyledButton>
   );
+};
+
+BtnComp.prototype = {
+  btnValue: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  shape: PropTypes.string,
 };
 
 export default BtnComp;

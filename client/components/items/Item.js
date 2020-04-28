@@ -10,10 +10,14 @@ const StyledCard = styled(Card)`
   height: 400px;
 `;
 
-const Item = ({ size, description, imgUrl, id }) => {
+const Item = ({ size, description, imgUrl, id, loading }) => {
   return (
     <Link href={`product/[id]`} as={`product/${id}`}>
-      <StyledCard hoverable cover={<img alt="image" src={imgUrl} />}>
+      <StyledCard
+        loading={loading}
+        hoverable
+        cover={<img alt="image" src={imgUrl} />}
+      >
         <Meta title={size} description={description} />
       </StyledCard>
     </Link>

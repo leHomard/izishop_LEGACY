@@ -19,7 +19,7 @@ const Header = () => {
         <StyledNav>
           <Logo>
             <Link href="/">
-              <a>Vinted-Clone</a>
+              <a>IZISHOP</a>
             </Link>
           </Logo>
           <SearchBarDiv>

@@ -1,6 +1,6 @@
 import { Menu, Avatar } from "antd";
 import Link from "next/link";
-import StyledMenu, { StyledSubMenu } from "./styles";
+import StyledMenu from "./styles";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 import {
@@ -28,7 +28,7 @@ const SIGNOUT_MUTATION = gql`
 
 const Nav = () => {
   const currentUser = useFetchUser();
-  const [signout, { data, error, loading }] = useMutation(SIGNOUT_MUTATION, {
+  const [signout] = useMutation(SIGNOUT_MUTATION, {
     refetchQueries: [{ query: QUERY_USER_INFO }],
   });
 
@@ -86,12 +86,13 @@ const Nav = () => {
           </Item>
           <Item>
             <Link href="login">
-              <BtnComp
-                type="primary"
-                shape="round"
-                onClick={() => console.log("ok")}
-                btnValue="Rejoingnez nous"
-              />
+              <a>
+                <BtnComp
+                  type="primary"
+                  shape="round"
+                  btnValue="Rejoingnez nous"
+                />
+              </a>
             </Link>
           </Item>
           <Item>

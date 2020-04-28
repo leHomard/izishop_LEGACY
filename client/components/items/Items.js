@@ -27,6 +27,7 @@ const Items = () => {
         <Item
           key={el.id}
           id={el.id}
+          loading={loading}
           size={el.title}
           description={el.description}
           imgUrl="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
