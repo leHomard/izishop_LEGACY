@@ -3,7 +3,6 @@ import { useQuery } from "@apollo/client";
 import ItemsList from "./styles";
 
 import Item from "./Item";
-import { useState } from "react";
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {

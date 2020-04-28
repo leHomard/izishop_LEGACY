@@ -15,7 +15,7 @@ const Home = () => {
           text="Vends et achete des vetements plus facilement !"
           value="Inscrivez-vous!"
         >
-          <h3>Bienvenue sur Detniv !</h3>
+          <h3>Bienvenue sur izishop !</h3>
           <p>Vendre et acheter plus facilement !</p>
           <Button
             btnValue="Inscrivez vous"
