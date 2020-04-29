@@ -5,18 +5,14 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 
 import GridGallery from "../../components/UI/GridGallery";
+import ItemInfoCard from "../../components/items/ItemInfoCard";
 
 const ItemContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   height: 680px;
-  border: 1px solid red;
-  .ReactGridGallery {
-    margin-left: 5rem;
-    width: 50%;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 300px));
-  }
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 const Img = styled.img`
@@ -46,6 +42,7 @@ const Product = () => {
     return (
       <ItemContainer>
         <GridGallery />
+        <ItemInfoCard />
       </ItemContainer>
     );
   } else return <div>Aucun produit trouvé !</div>;
