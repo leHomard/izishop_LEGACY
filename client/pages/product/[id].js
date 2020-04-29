@@ -4,8 +4,19 @@ import { useQuery } from "@apollo/client";
 import styled from "styled-components";
 import gql from "graphql-tag";
 
-const Container = styled.div`
-  width: 960px;
+import GridGallery from "../../components/UI/GridGallery";
+
+const ItemContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  height: 680px;
+  border: 1px solid red;
+  .ReactGridGallery {
+    margin-left: 5rem;
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 300px));
+  }
 `;
 
 const Img = styled.img`
@@ -33,14 +44,9 @@ const Product = () => {
   if (loading) return <div>Chargement...</div>;
   if (item) {
     return (
-      <Container>
-        <div>{item.title}</div>
-        <Img
-          src={"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"}
-        />
-        <div>{item.description}</div>
-        <div>{item.price}€</div>
-      </Container>
+      <ItemContainer>
+        <GridGallery />
+      </ItemContainer>
     );
   } else return <div>Aucun produit trouvé !</div>;
 };

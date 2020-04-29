@@ -7,7 +7,6 @@ const { Meta } = Card;
 
 const StyledCard = styled(Card)`
   width: 240px;
-  height: 400px;
 `;
 
 const Item = ({ size, description, imgUrl, id, loading }) => {
