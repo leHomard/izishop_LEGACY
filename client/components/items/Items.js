@@ -11,7 +11,7 @@ const ALL_ITEMS_QUERY = gql`
       title
       description
       price
-      imageUrl
+      imagesUrl
     }
   }
 `;
@@ -30,7 +30,7 @@ const Items = () => {
           loading={loading}
           size={el.title}
           description={el.description}
-          imgUrl="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+          imgUrl={el.imagesUrl[0]}
         />
       ))}
     </ItemsList>

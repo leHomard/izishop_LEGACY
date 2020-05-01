@@ -6,7 +6,16 @@ import Link from "next/link";
 const { Meta } = Card;
 
 const StyledCard = styled(Card)`
-  width: 240px;
+  width: 250px;
+  height: 405px;
+  .ant-card-cover {
+    height: 320px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 `;
 
 const Item = ({ size, description, imgUrl, id, loading }) => {

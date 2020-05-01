@@ -11,11 +11,19 @@ const ItemsList = styled.div`
 `;
 
 export const StyledCard = styled(Card)`
-  height: 90%;
+  height: 600px;
   width: 30%;
   box-shadow: var(--box-shadow);
   margin: 1rem 0 0 0;
   border-radius: 1rem;
+  @media (max-width: 1024px) {
+    width: 75%;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 
 export const StyledInfoHeader = styled.div`

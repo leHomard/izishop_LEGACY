@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/omar-harras-df65b3/vinted-clone/dev
-# timestamp: Wed Apr 08 2020 21:55:36 GMT+0200 (Central European Summer Time)
+# timestamp: Thu Apr 30 2020 16:10:41 GMT+0200 (Central European Summer Time)
 
 type AggregateItem {
   count: Int!
@@ -31,9 +31,9 @@ type Item implements Node {
   id: ID!
   title: String!
   description: String!
-  imageUrl: String!
+  imagesUrl: [String!]!
   price: Int!
-  location: Location
+  user: User
   type: String!
   categories: [Category!]!
   size: String!
@@ -59,11 +59,14 @@ input ItemCreatecategoriesInput {
   set: [Category!]
 }
 
+input ItemCreateimagesUrlInput {
+  set: [String!]
+}
+
 input ItemCreateInput {
   id: ID
   title: String!
   description: String!
-  imageUrl: String!
   price: Int!
   type: String!
   size: String!
@@ -71,13 +74,29 @@ input ItemCreateInput {
   brand: String!
   nbViews: Int
   nbInterested: Int
+  imagesUrl: ItemCreateimagesUrlInput
   categories: ItemCreatecategoriesInput
-  location: LocationCreateOneInput
+  user: UserCreateOneWithoutItemsInput
 }
 
-input ItemCreateManyInput {
-  create: [ItemCreateInput!]
+input ItemCreateManyWithoutUserInput {
+  create: [ItemCreateWithoutUserInput!]
   connect: [ItemWhereUniqueInput!]
+}
+
+input ItemCreateWithoutUserInput {
+  id: ID
+  title: String!
+  description: String!
+  price: Int!
+  type: String!
+  size: String!
+  color: String!
+  brand: String!
+  nbViews: Int
+  nbInterested: Int
+  imagesUrl: ItemCreateimagesUrlInput
+  categories: ItemCreatecategoriesInput
 }
 
 """An edge in a connection."""
@@ -96,8 +115,6 @@ enum ItemOrderByInput {
   title_DESC
   description_ASC
   description_DESC
-  imageUrl_ASC
-  imageUrl_DESC
   price_ASC
   price_DESC
   type_ASC
@@ -122,7 +139,7 @@ type ItemPreviousValues {
   id: ID!
   title: String!
   description: String!
-  imageUrl: String!
+  imagesUrl: [String!]!
   price: Int!
   type: String!
   categories: [Category!]!
@@ -264,46 +281,6 @@ input ItemScalarWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
-  imageUrl: String
-
-  """All values that are not equal to given value."""
-  imageUrl_not: String
-
-  """All values that are contained in given list."""
-  imageUrl_in: [String!]
-
-  """All values that are not contained in given list."""
-  imageUrl_not_in: [String!]
-
-  """All values less than the given value."""
-  imageUrl_lt: String
-
-  """All values less than or equal the given value."""
-  imageUrl_lte: String
-
-  """All values greater than the given value."""
-  imageUrl_gt: String
-
-  """All values greater than or equal the given value."""
-  imageUrl_gte: String
-
-  """All values containing the given string."""
-  imageUrl_contains: String
-
-  """All values not containing the given string."""
-  imageUrl_not_contains: String
-
-  """All values starting with the given string."""
-  imageUrl_starts_with: String
-
-  """All values not starting with the given string."""
-  imageUrl_not_starts_with: String
-
-  """All values ending with the given string."""
-  imageUrl_ends_with: String
-
-  """All values not ending with the given string."""
-  imageUrl_not_ends_with: String
   price: Int
 
   """All values that are not equal to given value."""
@@ -617,25 +594,13 @@ input ItemUpdatecategoriesInput {
   set: [Category!]
 }
 
-input ItemUpdateDataInput {
-  title: String
-  description: String
-  imageUrl: String
-  price: Int
-  type: String
-  size: String
-  color: String
-  brand: String
-  nbViews: Int
-  nbInterested: Int
-  categories: ItemUpdatecategoriesInput
-  location: LocationUpdateOneInput
+input ItemUpdateimagesUrlInput {
+  set: [String!]
 }
 
 input ItemUpdateInput {
   title: String
   description: String
-  imageUrl: String
   price: Int
   type: String
   size: String
@@ -643,14 +608,14 @@ input ItemUpdateInput {
   brand: String
   nbViews: Int
   nbInterested: Int
+  imagesUrl: ItemUpdateimagesUrlInput
   categories: ItemUpdatecategoriesInput
-  location: LocationUpdateOneInput
+  user: UserUpdateOneWithoutItemsInput
 }
 
 input ItemUpdateManyDataInput {
   title: String
   description: String
-  imageUrl: String
   price: Int
   type: String
   size: String
@@ -658,25 +623,13 @@ input ItemUpdateManyDataInput {
   brand: String
   nbViews: Int
   nbInterested: Int
+  imagesUrl: ItemUpdateimagesUrlInput
   categories: ItemUpdatecategoriesInput
-}
-
-input ItemUpdateManyInput {
-  create: [ItemCreateInput!]
-  connect: [ItemWhereUniqueInput!]
-  set: [ItemWhereUniqueInput!]
-  disconnect: [ItemWhereUniqueInput!]
-  delete: [ItemWhereUniqueInput!]
-  update: [ItemUpdateWithWhereUniqueNestedInput!]
-  updateMany: [ItemUpdateManyWithWhereNestedInput!]
-  deleteMany: [ItemScalarWhereInput!]
-  upsert: [ItemUpsertWithWhereUniqueNestedInput!]
 }
 
 input ItemUpdateManyMutationInput {
   title: String
   description: String
-  imageUrl: String
   price: Int
   type: String
   size: String
@@ -684,7 +637,20 @@ input ItemUpdateManyMutationInput {
   brand: String
   nbViews: Int
   nbInterested: Int
+  imagesUrl: ItemUpdateimagesUrlInput
   categories: ItemUpdatecategoriesInput
+}
+
+input ItemUpdateManyWithoutUserInput {
+  create: [ItemCreateWithoutUserInput!]
+  connect: [ItemWhereUniqueInput!]
+  set: [ItemWhereUniqueInput!]
+  disconnect: [ItemWhereUniqueInput!]
+  delete: [ItemWhereUniqueInput!]
+  update: [ItemUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [ItemUpdateManyWithWhereNestedInput!]
+  deleteMany: [ItemScalarWhereInput!]
+  upsert: [ItemUpsertWithWhereUniqueWithoutUserInput!]
 }
 
 input ItemUpdateManyWithWhereNestedInput {
@@ -692,15 +658,29 @@ input ItemUpdateManyWithWhereNestedInput {
   data: ItemUpdateManyDataInput!
 }
 
-input ItemUpdateWithWhereUniqueNestedInput {
-  where: ItemWhereUniqueInput!
-  data: ItemUpdateDataInput!
+input ItemUpdateWithoutUserDataInput {
+  title: String
+  description: String
+  price: Int
+  type: String
+  size: String
+  color: String
+  brand: String
+  nbViews: Int
+  nbInterested: Int
+  imagesUrl: ItemUpdateimagesUrlInput
+  categories: ItemUpdatecategoriesInput
 }
 
-input ItemUpsertWithWhereUniqueNestedInput {
+input ItemUpdateWithWhereUniqueWithoutUserInput {
   where: ItemWhereUniqueInput!
-  update: ItemUpdateDataInput!
-  create: ItemCreateInput!
+  data: ItemUpdateWithoutUserDataInput!
+}
+
+input ItemUpsertWithWhereUniqueWithoutUserInput {
+  where: ItemWhereUniqueInput!
+  update: ItemUpdateWithoutUserDataInput!
+  create: ItemCreateWithoutUserInput!
 }
 
 input ItemWhereInput {
@@ -832,46 +812,6 @@ input ItemWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
-  imageUrl: String
-
-  """All values that are not equal to given value."""
-  imageUrl_not: String
-
-  """All values that are contained in given list."""
-  imageUrl_in: [String!]
-
-  """All values that are not contained in given list."""
-  imageUrl_not_in: [String!]
-
-  """All values less than the given value."""
-  imageUrl_lt: String
-
-  """All values less than or equal the given value."""
-  imageUrl_lte: String
-
-  """All values greater than the given value."""
-  imageUrl_gt: String
-
-  """All values greater than or equal the given value."""
-  imageUrl_gte: String
-
-  """All values containing the given string."""
-  imageUrl_contains: String
-
-  """All values not containing the given string."""
-  imageUrl_not_contains: String
-
-  """All values starting with the given string."""
-  imageUrl_starts_with: String
-
-  """All values not starting with the given string."""
-  imageUrl_not_starts_with: String
-
-  """All values ending with the given string."""
-  imageUrl_ends_with: String
-
-  """All values not ending with the given string."""
-  imageUrl_not_ends_with: String
   price: Int
 
   """All values that are not equal to given value."""
@@ -1142,7 +1082,7 @@ input ItemWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
-  location: LocationWhereInput
+  user: UserWhereInput
 }
 
 input ItemWhereUniqueInput {
@@ -1569,23 +1509,23 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
-  createLocation(data: LocationCreateInput!): Location!
   createItem(data: ItemCreateInput!): Item!
+  createLocation(data: LocationCreateInput!): Location!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
   updateItem(data: ItemUpdateInput!, where: ItemWhereUniqueInput!): Item
+  updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteLocation(where: LocationWhereUniqueInput!): Location
   deleteItem(where: ItemWhereUniqueInput!): Item
+  deleteLocation(where: LocationWhereUniqueInput!): Location
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
   upsertItem(where: ItemWhereUniqueInput!, create: ItemCreateInput!, update: ItemUpdateInput!): Item!
+  upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
   updateManyItems(data: ItemUpdateManyMutationInput!, where: ItemWhereInput): BatchPayload!
+  updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyLocations(where: LocationWhereInput): BatchPayload!
   deleteManyItems(where: ItemWhereInput): BatchPayload!
+  deleteManyLocations(where: LocationWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1617,14 +1557,14 @@ type PageInfo {
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
   items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item]!
+  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
   user(where: UserWhereUniqueInput!): User
-  location(where: LocationWhereUniqueInput!): Location
   item(where: ItemWhereUniqueInput!): Item
+  location(where: LocationWhereUniqueInput!): Location
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
   itemsConnection(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ItemConnection!
+  locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1635,8 +1575,8 @@ type Query {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
   item(where: ItemSubscriptionWhereInput): ItemSubscriptionPayload
+  location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
 }
 
 type User implements Node {
@@ -1650,6 +1590,7 @@ type User implements Node {
   userName: String
   email: String!
   profilePicture: String
+  location: Location
   items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item!]
   isAdmin: Boolean!
   isVerified: Boolean
@@ -1680,7 +1621,29 @@ input UserCreateInput {
   profilePicture: String
   isAdmin: Boolean
   isVerified: Boolean
-  items: ItemCreateManyInput
+  location: LocationCreateOneInput
+  items: ItemCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutItemsInput {
+  create: UserCreateWithoutItemsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutItemsInput {
+  id: ID
+  firstName: String
+  lastName: String
+  password: String!
+  token: String
+  tempToken: String
+  resetTokenExpiry: Float
+  userName: String
+  email: String!
+  profilePicture: String
+  isAdmin: Boolean
+  isVerified: Boolean
+  location: LocationCreateOneInput
 }
 
 """An edge in a connection."""
@@ -1789,7 +1752,8 @@ input UserUpdateInput {
   profilePicture: String
   isAdmin: Boolean
   isVerified: Boolean
-  items: ItemUpdateManyInput
+  location: LocationUpdateOneInput
+  items: ItemUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
@@ -1804,6 +1768,35 @@ input UserUpdateManyMutationInput {
   profilePicture: String
   isAdmin: Boolean
   isVerified: Boolean
+}
+
+input UserUpdateOneWithoutItemsInput {
+  create: UserCreateWithoutItemsInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserUpdateWithoutItemsDataInput
+  upsert: UserUpsertWithoutItemsInput
+}
+
+input UserUpdateWithoutItemsDataInput {
+  firstName: String
+  lastName: String
+  password: String
+  token: String
+  tempToken: String
+  resetTokenExpiry: Float
+  userName: String
+  email: String
+  profilePicture: String
+  isAdmin: Boolean
+  isVerified: Boolean
+  location: LocationUpdateOneInput
+}
+
+input UserUpsertWithoutItemsInput {
+  update: UserUpdateWithoutItemsDataInput!
+  create: UserCreateWithoutItemsInput!
 }
 
 input UserWhereInput {
@@ -2249,6 +2242,7 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
+  location: LocationWhereInput
   items_every: ItemWhereInput
   items_some: ItemWhereInput
   items_none: ItemWhereInput

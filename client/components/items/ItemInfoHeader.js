@@ -9,7 +9,7 @@ const ItemInfoHeader = ({ publishedAt, userName }) => {
       <Avatar size="large" shape="circle" icon={<UserOutlined />} />
       <span className="header--meta--info">
         <h3>{userName}</h3>
-        <p>Publié il y a {publishedAt}</p>
+        <p>Ajouté il y a {publishedAt}</p>
       </span>
     </StyledInfoHeader>
   );

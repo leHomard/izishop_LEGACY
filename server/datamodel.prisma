@@ -9,6 +9,7 @@ type User {
   userName: String @unique
   email: String! @unique
   profilePicture: String
+  location: Location
   items: [Item]
   isAdmin: Boolean! @default(value: false)
   isVerified: Boolean @default(value: false)
@@ -38,9 +39,9 @@ type Item {
   id: ID! @id @unique
   title: String!
   description: String!
-  imageUrl: String!
+  imagesUrl: [String] @scalarList(strategy: RELATION)
   price: Int!
-  location: Location
+  user: User
   type: String!
   categories: [Category]! @scalarList(strategy: RELATION)
   size: String!
