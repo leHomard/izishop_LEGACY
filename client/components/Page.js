@@ -13,7 +13,8 @@ const theme = {
 };
 
 const StyledPage = styled.div`
-  background: white;
+  height: 100vh;
+  background: #ffffff;
   color: ${(props) => props.theme.black};
 `;
 
