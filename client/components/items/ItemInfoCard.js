@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+// All the styles of the card item are on styles.js
 import { StyledCard } from "./styles";
 import ItemInfoHeader from "./ItemInfoHeader";
 import ItemInfoProperties from "./ItemInfoProperties";
