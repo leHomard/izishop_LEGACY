@@ -17,27 +17,14 @@ const StyleList = styled.ul`
 `;
 
 const ListItemValue = ({ item }) => {
-  const filteredItem =
-    item &&
-    item.filter(
-      (i) =>
-        i.title !== "description" &&
-        i.title !== "__typename" &&
-        i.title !== "user" &&
-        i.title !== "title" &&
-        i.title !== "imagesUrl"
-    );
-
-  const itemInfo = filteredItem.reduce(
-    (obj, i) => ((obj[i.title] = i.value), obj),
-    {}
-  );
+  // pull data that we want for the item object
+  const { brand, color, size, type, categories, nbViews, nbInterested } = item;
 
   return (
     <StyleList>
       <li>
         <div className="item--title">Marque</div>
-        <div>{itemInfo.brand}</div>
+        <div>{brand}</div>
       </li>
       <li>
         <div className="item--title">ÉTAT</div>
@@ -45,19 +32,19 @@ const ListItemValue = ({ item }) => {
       </li>
       <li>
         <div className="item--title">COULEUR</div>
-        <div>{itemInfo.color}</div>
+        <div>{color}</div>
       </li>
       <li>
         <div className="item--title">TAILLE</div>
-        <div>{itemInfo.size}</div>
+        <div>{size}</div>
       </li>
       <li>
         <div className="item--title">TYPE</div>
-        <div>{itemInfo.type}</div>
+        <div>{type}</div>
       </li>
       <li>
         <div className="item--title">CATÉGORIE</div>
-        <div>{itemInfo.categories[0]}</div>
+        <div>{categories[0]}</div>
       </li>
       <li>
         <div className="item--title">EMPLACEMENT</div>
@@ -65,11 +52,11 @@ const ListItemValue = ({ item }) => {
       </li>
       <li>
         <div className="item--title">NOMBRE DE VUES</div>
-        <div>{itemInfo.nbViews}</div>
+        <div>{nbViews}</div>
       </li>
       <li>
         <div className="item--title">INTÉRESSÉ PAR</div>
-        <div>{itemInfo.nbInterested}</div>
+        <div>{nbInterested}</div>
       </li>
     </StyleList>
   );

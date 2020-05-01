@@ -16,6 +16,12 @@ export const StyledCard = styled(Card)`
   box-shadow: var(--box-shadow);
   margin: 1rem 0 0 0;
   border-radius: 1rem;
+  .meta--info--title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 15px 0 0;
+  }
   @media (max-width: 1024px) {
     width: 75%;
     margin: 0 auto;

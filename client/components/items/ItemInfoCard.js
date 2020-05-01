@@ -6,10 +6,10 @@ import ItemInfoProperties from "./ItemInfoProperties";
 import ItemInfoCardActions from "./ItemInfoCardActions";
 
 export const ItemInfoCard = ({ item }) => {
-  const user = item.find((i) => i.title === "user");
+  const { userName } = item.user;
   return (
     <StyledCard>
-      <ItemInfoHeader userName={user.value.userName} publishedAt="2 jours" />
+      <ItemInfoHeader userName={userName} publishedAt="2 jours" />
       <hr />
       <ItemInfoProperties item={item} />
       <hr />
@@ -19,7 +19,7 @@ export const ItemInfoCard = ({ item }) => {
 };
 
 ItemInfoCard.propTypes = {
-  item: PropTypes.array.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
 export default ItemInfoCard;

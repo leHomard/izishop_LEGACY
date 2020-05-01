@@ -46,7 +46,7 @@ const Product = () => {
   });
   const item = data && data.getItemById;
 
-  // array of objects for grid gallery
+  // Grid Gallery needs those infos in an object
   const itemPhotos =
     data &&
     item.imagesUrl.map((i) => {
@@ -58,20 +58,13 @@ const Product = () => {
       };
     });
 
-  const itemInfos =
-    item &&
-    Object.entries(item).map(([title, value]) => ({
-      title,
-      value,
-    }));
-
   if (error) return <div>Erreur...</div>;
   if (loading) return <div>Chargement...</div>;
   if (item) {
     return (
       <ItemContainer>
         <GridGallery photos={itemPhotos} />
-        <ItemInfoCard item={itemInfos} />
+        <ItemInfoCard item={item} />
       </ItemContainer>
     );
   } else return <div>Aucun produit trouvé !</div>;

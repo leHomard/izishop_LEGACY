@@ -11,7 +11,6 @@ const Hero = ({ imgUrl, children }) => {
           <img alt="Welcome" src={imgUrl} />
         </Thumbnail>
       </HeroWrapper>
-      <hr />
     </Fragment>
   );
 };
