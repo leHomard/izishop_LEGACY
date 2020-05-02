@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import Items from "../components/items/Items";
 import Hero from "../components/hero/hero";
 import Button from "../components/UI/Button";
+import TopBrands from "../components/TopBrands";
 import { useFetchUser } from "../hooks/useFetchUser";
 
 const Home = () => {
@@ -25,6 +26,7 @@ const Home = () => {
           />
         </Hero>
       )}
+      <TopBrands />
       <Items />
     </Fragment>
   );
