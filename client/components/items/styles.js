@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card } from "antd";
+import { Card, Form } from "antd";
 
 const ItemsList = styled.div`
   display: grid;
@@ -57,6 +57,36 @@ export const StyledActions = styled.div`
   button {
     margin-top: 0.5rem;
   }
+`;
+
+export const FormContainer = styled(Form)`
+  text-align: center;
+  padding: 28px 0;
+  width: 70%;
+  box-shadow: var(--box-shadow);
+  margin: 0 auto;
+  @media (max-width: 648px) {
+    width: 100%;
+  }
+`;
+
+export const FormElement = styled.div`
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem;
+`;
+
+export const StyledUpload = styled(Form.Item)`
+  margin: 0 auto;
+  width: 100%;
+`;
+
+export const StyledItem = styled(Form.Item)`
+  border-bottom: 1px solid #bbb;
+  margin: 0 auto;
+  width: 60%;
+  justify-content: space-between;
+  padding: 18px;
 `;
 
 export default ItemsList;
