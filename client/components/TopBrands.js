@@ -30,8 +30,8 @@ const StyledTopBrands = styled.div`
 
 const colors = [
   "lightBlue",
+  "lightpink",
   "antiquewhite",
-  "darkseagreen",
   "coral",
   "lavender",
   "yellowgreen",
@@ -40,6 +40,7 @@ const colors = [
 ];
 
 const TopBrands = () => {
+  // for testing purpose
   const brands = [
     "ZARA",
     "TOMMY HILFIGER",

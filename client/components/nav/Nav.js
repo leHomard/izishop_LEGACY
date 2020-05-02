@@ -40,7 +40,7 @@ const Nav = () => {
             <BtnComp
               type="primary"
               shape="round"
-              btnValue="Ajouter des articles"
+              btnValue="Ajouter un article"
             />
           </Item>
           <SubMenu
