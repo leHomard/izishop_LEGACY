@@ -9,7 +9,7 @@ const Meta = () => {
         initial-scale=1"
       />
       <meta charSet="utf-8" />
-      <title>Vinted Clone</title>
+      <title>IZIshop</title>
     </Head>
   );
 };

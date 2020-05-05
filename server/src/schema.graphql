@@ -6,11 +6,11 @@ type SuccessMessage {
 
 type Mutation {
   createItem(
+    brand: String
     title: String
     description: String
-    price: Int
-    image: String
-    largeImage: String
+    price: String
+    imagesUrl: [String]
   ): Item!
   signup(
     userName: String!

@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 
 import { StyledForm } from "./styles";
 import { QUERY_USER_INFO } from "../../hooks/useFetchUser";
+import useForm from "../../hooks/useForm";
 
 const { Item } = StyledForm;
 
@@ -30,13 +31,9 @@ const SIGNIN_MUTATION = gql`
 
 const Login = () => {
   const router = useRouter();
-  const [emailValue, setEmailValue] = useState("");
-  const [pwdValue, setPwdValue] = useState("");
+  const { values, handleChange } = useForm();
   const [signin, { data }] = useMutation(SIGNIN_MUTATION, {
-    variables: {
-      email: emailValue,
-      password: pwdValue,
-    },
+    variables: values,
     refetchQueries: [
       {
         query: QUERY_USER_INFO,
@@ -49,7 +46,7 @@ const Login = () => {
   }
 
   return (
-    <StyledForm {...layout}>
+    <StyledForm onFinish={signin} {...layout}>
       <h2>Login</h2>
       <Item
         className="inputs"
@@ -57,8 +54,9 @@ const Login = () => {
         rules={[{ required: true, message: () => displayFormError("email") }]}
       >
         <Input
-          value={emailValue}
-          onChange={(e) => setEmailValue(e.target.value)}
+          name="email"
+          value={values.email}
+          onChange={handleChange}
           prefix={<MailOutlined />}
           type="email"
           placeholder="email"
@@ -72,10 +70,11 @@ const Login = () => {
       >
         <Input
           prefix={<LockOutlined />}
+          name="password"
           type="password"
           placeholder="Password"
-          value={pwdValue}
-          onChange={(e) => setPwdValue(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
         />
       </Item>
       <Item
@@ -86,7 +85,7 @@ const Login = () => {
         <Checkbox className="checkbox">Se souvenir de moi</Checkbox>
       </Item>
       <Item style={{ marginTop: "-1em" }}>
-        <Button onClick={signin} type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit">
           Login
         </Button>
       </Item>

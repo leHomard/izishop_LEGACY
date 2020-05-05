@@ -42,7 +42,7 @@ const Nav = () => {
                 <BtnComp
                   type="primary"
                   shape="round"
-                  btnValue="Ajouter un article"
+                  btnvalue="Ajouter un article"
                 />
               </a>
             </Link>
@@ -94,7 +94,7 @@ const Nav = () => {
                 <BtnComp
                   type="primary"
                   shape="round"
-                  btnValue="Rejoingnez nous"
+                  btnvalue="Rejoingnez nous"
                 />
               </a>
             </Link>

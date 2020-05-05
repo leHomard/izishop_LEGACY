@@ -1,7 +1,8 @@
-import AddItemForm from "../components/items/AddItemForm";
+// import AddItemForm from "../components/items/AddItemForm";
+import NewItemForm from "../components/newItemForm/NewItemForm";
 
 const AddItem = () => {
-  return <AddItemForm />;
+  return <NewItemForm />;
 };
 
 export default AddItem;

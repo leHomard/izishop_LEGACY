@@ -19,7 +19,7 @@ const Home = () => {
           <h3>Bienvenue sur izishop !</h3>
           <p>Vendre et acheter plus facilement !</p>
           <Button
-            btnValue="Inscrivez vous"
+            btnvalue="Inscrivez vous"
             onClick={() => {}}
             type="primary"
             shape="round"

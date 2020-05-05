@@ -113,6 +113,9 @@ const mutations = {
 
   // TODO check if the user is logged in
   async createItem(parent, args, context, info) {
+    // 1. get data
+    // 2. find a way to get file uploads and create an endpoint to amazon s3
+    // 3. get file url from Amazon S3
     const item = await context.db.mutation.createItem(
       {
         data: { ...args },

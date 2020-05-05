@@ -10,7 +10,7 @@ const ItemInfoCardActions = () => {
       >
         Contacter le vendeur
       </Button>
-      <BtnComp type="primary" btnValue="Acheter" />
+      <BtnComp type="primary" btnvalue="Acheter" />
       <Button
         shape="square"
         style={{

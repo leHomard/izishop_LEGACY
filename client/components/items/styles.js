@@ -79,6 +79,7 @@ export const FormElement = styled.div`
 export const StyledUpload = styled(Form.Item)`
   margin: 0 auto;
   width: 100%;
+  border: 1px dashed ${(props) => props.theme.blue};
 `;
 
 export const StyledItem = styled(Form.Item)`

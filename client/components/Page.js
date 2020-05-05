@@ -10,6 +10,7 @@ const theme = {
   lightgrey: "#f6f6f6",
   offWhite: "#EDEDED",
   maxWidth: "1000px",
+  greytext: "#999",
 };
 
 const StyledPage = styled.div`
