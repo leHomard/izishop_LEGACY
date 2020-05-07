@@ -1,29 +1,49 @@
-import { Form, Upload, Input } from "antd";
-import { PictureOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { Form } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 import useForm from "../../hooks/useForm";
 import BtnComp from "../UI/Button";
+import { StyledUpload } from "./styles";
+import { endpoint } from "../../config";
 
 const { Item } = Form;
-const { Dragger } = Upload;
 
-const StepOne = ({ onSubmit, increaseStep }) => {
-  const { values, handleChange } = useForm();
+const StepOne = ({ onSubmit, increaseStep, customUpload }) => {
+  const [images, setImages] = useState([]);
 
-  const handleSubmit = (values) => {
-    onSubmit(values);
+  const handleSubmit = () => {
+    onSubmit({ images: { ...images } });
     increaseStep();
+  };
+
+  const handleUpload = ({ fileList }) => {
+    setImages(fileList);
   };
 
   return (
     <Form onFinish={handleSubmit}>
-      <Item>
-        <Dragger multiple name="files" action="/upload.do">
-          <p className="ant-upload-drag-icon">
-            <PictureOutlined />
-          </p>
-          <p className="ant-upload-text">Ajoute des photos</p>
-        </Dragger>
+      <Item
+      // name="photos"
+      // rules={[
+      //   {
+      //     required: true,
+      //     message: "Il faut obligatoirement joindre 4 photos",
+      //   },
+      // ]}
+      >
+        <StyledUpload
+          style={{ border: "1px solid red !important" }}
+          listType="picture"
+          onChange={handleUpload}
+          customRequest={customUpload}
+        >
+          <div className="upload--content">
+            <PlusOutlined />
+            <p>Ajoute 4 photos de ton article</p>
+          </div>
+        </StyledUpload>
       </Item>
       <BtnComp
         style={{ float: "right" }}

@@ -6,6 +6,10 @@ import BtnComp from "../UI/Button";
 
 const { Item } = Form;
 
+const config = {
+  rules: [{ required: true }],
+};
+
 const FinalStep = ({ onSubmit, decreaseStep }) => {
   const { values, handleChange } = useForm();
 
@@ -15,8 +19,9 @@ const FinalStep = ({ onSubmit, decreaseStep }) => {
 
   return (
     <Form onFinish={handleSubmit}>
-      <Item name="price" label="Prix">
+      <Item {...config} name="price" label="Prix">
         <Input
+          type="number"
           name="price"
           value={values.price}
           onChange={handleChange}
@@ -25,7 +30,7 @@ const FinalStep = ({ onSubmit, decreaseStep }) => {
       </Item>
       <hr />
       <br />
-      <Item name="parcelType">
+      <Item {...config} name="parcelType">
         <Radio.Group
           onChange={handleChange}
           value={values.parcelType}

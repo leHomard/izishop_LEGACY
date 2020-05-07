@@ -1,4 +1,4 @@
-import { Radio, Form } from "antd";
+import { Radio, Form, Upload } from "antd";
 import styled from "styled-components";
 
 const { Item } = Form;
@@ -28,6 +28,28 @@ export const StyledRadio = styled(Radio)`
   .ant-radio {
     height: 20px;
     padding-top: 6px;
+  }
+`;
+
+export const StyledUpload = styled(Upload)`
+  .ant-upload {
+    border: 1px dashed ${(props) => props.theme.blue};
+    background-color: #fafafa;
+    width: 330px;
+    height: 200px;
+    margin: 0 auto;
+    display: table;
+    cursor: pointer;
+  }
+  .upload--content {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    p {
+      margin-top: 10px;
+    }
   }
 `;
 

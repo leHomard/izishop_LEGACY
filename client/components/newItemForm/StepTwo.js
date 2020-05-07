@@ -19,6 +19,10 @@ const formItemLayout = {
   },
 };
 
+const config = {
+  rules: [{ type: "string", required: true }],
+};
+
 const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
   const { values, handleChange } = useForm();
 
@@ -33,7 +37,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
 
   return (
     <Form {...formItemLayout} onFinish={handleSubmit}>
-      <Item labelAlign="left" label="Marque" name="brand">
+      <Item {...config} labelAlign="left" label="Marque" name="brand">
         <Input
           name="brand"
           value={values.brand}
@@ -41,7 +45,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           placeholder="ex: Lacoste..."
         />
       </Item>
-      <Item labelAlign="left" label="Titre" name="title">
+      <Item {...config} labelAlign="left" label="Titre" name="title">
         <Input
           name="title"
           value={values.title}
@@ -49,7 +53,12 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           placeholder="ex: Polo Lacoste rouge..."
         />
       </Item>
-      <Item labelAlign="left" label="Description" name="description">
+      <Item
+        {...config}
+        labelAlign="left"
+        label="Description"
+        name="description"
+      >
         <Input.TextArea
           name="description"
           value={values.description}
@@ -57,7 +66,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           placeholder="ex: Article neuf, jamais porté..."
         />
       </Item>
-      <Item labelAlign="left" label="Catégorie" name="category">
+      <Item {...config} labelAlign="left" label="Catégorie" name="category">
         <Select
           value={values.category}
           onChange={onSelect}
@@ -70,7 +79,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           <Option value="HOME">Maison</Option>
         </Select>
       </Item>
-      <Item labelAlign="left" label="Type" name="type">
+      <Item {...config} labelAlign="left" label="Type" name="type">
         <Select
           value={values.type}
           onChange={onSelect}
@@ -83,7 +92,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           <Option value="Deco">Objet déco</Option>
         </Select>
       </Item>
-      <Item labelAlign="left" label="Taille" name="size">
+      <Item {...config} labelAlign="left" label="Taille" name="size">
         <Input
           name="size"
           value={values.size}
@@ -91,7 +100,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           placeholder="ex: S"
         />
       </Item>
-      <Item labelAlign="left" label="Couleur" name="color">
+      <Item {...config} labelAlign="left" label="Couleur" name="color">
         <Select placeholder="ex: Rouge" allowClear>
           {itemColors.map((color) => (
             <Option value={color.key} onChange={onSelect} key={color.key}>
