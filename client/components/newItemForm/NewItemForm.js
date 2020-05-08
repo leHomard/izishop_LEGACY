@@ -1,22 +1,36 @@
 import { useState } from "react";
-import axios from "axios";
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
 
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import FinalStep from "./FinalStep";
 import FormDiv from "./styles";
-import { endpoint } from "../../config";
+import { uploadImages } from "../../lib/api";
+
+// const CREATE_ITEM_MUTATION = gql`
+//     mutation CREATE_ITEM_MUTATION(
+//         $title: String,
+//     )
+// `;
+
+// Initial state of the form data
+const formData = {
+  urls: [],
+  brand: undefined,
+  title: undefined,
+  description: undefined,
+  category: undefined,
+  type: undefined,
+  size: undefined,
+  color: undefined,
+  price: undefined,
+  parcelType: undefined,
+};
 
 const NewItemForm = () => {
   const [step, setStep] = useState(1);
-  const [formValues, setFormValues] = useState({});
-  const [uploadState, setUploadState] = useState({
-    success: false,
-    url: "",
-    error: false,
-    errorMessage: "",
-  });
-
+  const [formValues, setFormValues] = useState(formData);
   const [images, setImages] = useState([]);
 
   // Get data from the form wizard
@@ -56,56 +70,28 @@ const NewItemForm = () => {
     };
   };
 
-  console.log("files state : ", images);
-
   // handle upload images to amazon S3
-  const handleUpload = () => {
-    // loop over images in state
+  const handleUpload = async (values) => {
+    // get the values from the final step form
+    await getFinalStepValues(values);
+
+    let urls = [];
+
+    /* loop over images state and upload them
+    then fill urls array by url of each image */
     for (let image of images) {
-      const fileName = image.name;
-      const fileType = image.type;
-
-      // Get Amazon S3 signedRequest from server
-      console.log("preparing the upload...");
-      console.log("fileName : ", fileName);
-      console.log("fileType : ", fileType);
-      axios
-        .post(`${endpoint}sign_s3`, {
-          fileName,
-          fileType,
-        })
-        .then((resp) => {
-          const signedRequest = resp.data.data.returnData.signedRequest;
-          const { url } = signedRequest;
-          setUploadState({ url });
-          console.log("received a signed request");
-
-          // set header options
-          const options = {
-            headers: {
-              "Content-Type": fileType,
-            },
-          };
-
-          // upload image to amazon
-          axios
-            .put(signedRequest, image, options)
-            .then((resp) => {
-              console.log("Response from S3");
-            })
-            .catch((error) => {
-              console.log(
-                "error when uploading image to amazon s3 :" +
-                  JSON.stringify(error)
-              );
-            });
-        })
-        .catch((error) => {
-          console.log(
-            "error when getting signed request :" + JSON.stringify(error)
-          );
-        });
+      const url = await uploadImages(image);
+      urls = [...urls, url];
     }
+
+    /* set the urls into the formValues state
+    to pass it to the CREATE_ITEM_MUTATION */
+    setFormValues((prevState) => {
+      return {
+        ...prevState,
+        urls: [...prevState.urls, urls],
+      };
+    });
   };
 
   // choose which step to render in form

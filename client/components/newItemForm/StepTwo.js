@@ -19,20 +19,51 @@ const formItemLayout = {
   },
 };
 
-const config = {
-  rules: [{ type: "string", required: true }],
-};
-
 const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
-  const { values, handleChange } = useForm();
+  const { values, handleChange, setValues } = useForm();
 
   const handleSubmit = (values) => {
     onSubmit(values);
     increaseStep();
   };
 
-  const onSelect = (value) => {
-    console.log("value : ", value);
+  // set values of the select to values state
+  const onSelectCategory = (value) => {
+    setValues((prevState) => {
+      return {
+        ...prevState,
+        category: value,
+      };
+    });
+  };
+  const onSelectType = (value) => {
+    setValues((prevState) => {
+      return {
+        ...prevState,
+        type: value,
+      };
+    });
+  };
+  const onSelectColor = (value) => {
+    setValues((prevState) => {
+      return {
+        ...prevState,
+        color: value,
+      };
+    });
+  };
+
+  const config = {
+    rules: [{ required: true, message: "Veuillez saisir ce champ" }],
+  };
+
+  const sizeConfig = {
+    rules: [
+      {
+        required: values.type === "Deco" ? false : true,
+        message: "Veuillez saisir ce champ",
+      },
+    ],
   };
 
   return (
@@ -69,7 +100,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
       <Item {...config} labelAlign="left" label="Catégorie" name="category">
         <Select
           value={values.category}
-          onChange={onSelect}
+          onChange={onSelectCategory}
           placeholder="ex: Femmes"
           allowClear
         >
@@ -82,7 +113,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
       <Item {...config} labelAlign="left" label="Type" name="type">
         <Select
           value={values.type}
-          onChange={onSelect}
+          onChange={onSelectType}
           placeholder="ex: Vêtements"
           allowClear
         >
@@ -92,8 +123,9 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           <Option value="Deco">Objet déco</Option>
         </Select>
       </Item>
-      <Item {...config} labelAlign="left" label="Taille" name="size">
+      <Item {...sizeConfig} labelAlign="left" label="Taille" name="size">
         <Input
+          disabled={values.type === "Deco"}
           name="size"
           value={values.size}
           onChange={handleChange}
@@ -101,9 +133,9 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
         />
       </Item>
       <Item {...config} labelAlign="left" label="Couleur" name="color">
-        <Select placeholder="ex: Rouge" allowClear>
+        <Select onChange={onSelectColor} placeholder="ex: Rouge" allowClear>
           {itemColors.map((color) => (
-            <Option value={color.key} onChange={onSelect} key={color.key}>
+            <Option value={color.key} key={color.key}>
               <ColorItem colorKey={color.value} color={color.key} />
             </Option>
           ))}

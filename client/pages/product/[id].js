@@ -39,6 +39,33 @@ const QUERY_GET_BY_PRODUCT_ID = gql`
   }
 `;
 
+// const images = [
+//   {
+//     src: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_1.jpeg",
+//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_1.jpeg",
+//     thumbnailWidth: 320,
+//     thumbnailHeight: 320,
+//   },
+//   {
+//     src: "https://izishop.s3.eu-west-3.amazonaws.com/3472153-2.jpg",
+//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/3472153-2.jpg",
+//     thumbnailWidth: 320,
+//     thumbnailHeight: 320,
+//   },
+//   {
+//     src: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_2.jpeg",
+//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_2.jpeg",
+//     thumbnailWidth: 320,
+//     thumbnailHeight: 320,
+//   },
+//   {
+//     src: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_3.jpeg",
+//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_3.jpeg",
+//     thumbnailWidth: 320,
+//     thumbnailHeight: 320,
+//   },
+// ];
+
 const Product = () => {
   const { query } = useRouter();
   const { data, loading, error } = useQuery(QUERY_GET_BY_PRODUCT_ID, {
