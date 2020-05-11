@@ -32,3 +32,20 @@ const handleUpload = async (values) => {
     };
   });
 };
+
+const [addItem, { err, loading, data }] = useMutation(CREATE_ITEM_MUTATION);
+
+const handleUpload = async (values) => {
+  let urls = [];
+  for (let image of images) {
+    const url = await uploadImages(image);
+    urls = [...urls, url];
+  }
+  setFormValues((prevState) => {
+    return {
+      ...prevState,
+      urls: [...prevState.urls, urls],
+    };
+  });
+  await addItem({ variables: values });
+};

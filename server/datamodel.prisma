@@ -42,19 +42,27 @@ enum Type {
   DECORATION
 }
 
+enum Condition {
+  NEW
+  VG_CONDITION
+  G_CONDITION
+}
+
 type Item {
   id: ID! @id @unique
   title: String!
   description: String!
   imagesUrl: [String] @scalarList(strategy: RELATION)
-  price: Int!
+  price: Float!
   user: User
-  type: [Type] @scalarList(strategy: RELATION)
+  condition: [Condition]! @scalarList(strategy: RELATION)
+  type: [Type]! @scalarList(strategy: RELATION)
   categories: [Category]! @scalarList(strategy: RELATION)
-  size: String!
+  size: String
   color: String!
   brand: String!
   nbViews: Int
+  parcelType: String!
   nbInterested: Int
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

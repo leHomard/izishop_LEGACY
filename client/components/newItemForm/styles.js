@@ -8,7 +8,7 @@ const FormDiv = styled.div`
   margin: 0 auto;
   border-radius: 1rem;
 
-  padding: 5rem 10rem 5rem 10rem;
+  padding: 3rem 5rem 5rem 5rem;
   box-shadow: var(--box-shadow);
   @media (max-width: 900px) {
     padding: 1rem 1rem 3rem 1rem;
@@ -35,8 +35,8 @@ export const StyledUpload = styled(Upload)`
   .ant-upload {
     border: 1px dashed ${(props) => props.theme.blue};
     background-color: #fafafa;
-    width: 330px;
-    height: 200px;
+    width: 370px;
+    height: 170px;
     margin: 0 auto;
     display: table;
     cursor: pointer;

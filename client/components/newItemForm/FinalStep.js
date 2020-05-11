@@ -1,4 +1,4 @@
-import { Form, Radio, Input } from "antd";
+import { Form, Radio, Input, Select } from "antd";
 
 import { StyledRadio } from "./styles";
 import useForm from "../../hooks/useForm";
@@ -6,25 +6,52 @@ import BtnComp from "../UI/Button";
 import { useState } from "react";
 
 const { Item } = Form;
+const { Option } = Select;
 
 const config = {
   rules: [{ required: true }],
 };
 
 const FinalStep = ({ onSubmit, decreaseStep }) => {
-  const { values, handleChange } = useForm();
+  const { values, handleChange, setValues } = useForm();
 
   const handleSubmit = (values) => {
-    onSubmit(values);
+    const { condition, price, parcelType } = values;
+    onSubmit({
+      condition,
+      price,
+      parcelType,
+    });
+  };
+
+  const onSelectCondition = (value) => {
+    setValues((prevState) => {
+      return {
+        ...prevState,
+        condition: value,
+      };
+    });
   };
 
   return (
     <Form onFinish={handleSubmit}>
+      <Item labelAlign="left" label="État" name="condition">
+        <Select
+          value={values.condition}
+          onChange={onSelectCondition}
+          placeholder="ex: neuf"
+          allowClear
+        >
+          <Option value="NEW">Neuf</Option>
+          <Option value="VG_CONDITION">Très bon état</Option>
+          <Option value="G_CONDITION">Bon état</Option>
+        </Select>
+      </Item>
       <Item {...config} name="price" label="Prix">
         <Input
           type="number"
           name="price"
-          value={values.price}
+          value={parseFloat(values.price)}
           onChange={handleChange}
           placeholder="0.00 Dhs"
         />

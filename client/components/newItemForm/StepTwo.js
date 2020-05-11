@@ -117,10 +117,10 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
           placeholder="ex: Vêtements"
           allowClear
         >
-          <Option value="clothes">Vêtements</Option>
-          <Option value="shoes">Chaussures</Option>
-          <Option value="Accessories">Accessoires</Option>
-          <Option value="Deco">Objet déco</Option>
+          <Option value="CLOTHES">Vêtements</Option>
+          <Option value="SHOES">Chaussures</Option>
+          <Option value="ACCESSORIES">Accessoires</Option>
+          <Option value="DECORATION">Objet déco</Option>
         </Select>
       </Item>
       <Item {...sizeConfig} labelAlign="left" label="Taille" name="size">

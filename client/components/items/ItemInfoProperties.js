@@ -32,7 +32,7 @@ const ItemInfoProperties = ({ item }) => {
     <div>
       <div className="meta--info--title">
         <h3>{brand}</h3>
-        <h2>${price}</h2>
+        <h2>{price}Dhs</h2>
       </div>
       <h4>{description}</h4>
       <ListItemValue obj={listData} />

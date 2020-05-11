@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 
@@ -8,11 +8,39 @@ import FinalStep from "./FinalStep";
 import FormDiv from "./styles";
 import { uploadImages } from "../../lib/api";
 
-// const CREATE_ITEM_MUTATION = gql`
-//     mutation CREATE_ITEM_MUTATION(
-//         $title: String,
-//     )
-// `;
+const CREATE_ITEM_MUTATION = gql`
+  mutation CREATE_ITEM_MUTATION(
+    $title: String!
+    $brand: String!
+    $description: String!
+    $size: String!
+    $color: String!
+    $parcelType: String!
+    $price: Float!
+    $urls: [String!]
+    $type: [Type!]
+    $condition: [Condition!]
+    $category: [Category!]
+  ) {
+    createItem(
+      brand: $brand
+      title: $title
+      description: $description
+      categories: { set: $category }
+      type: { set: $type }
+      size: $size
+      color: $color
+      condition: { set: $condition }
+      imagesUrl: { set: $urls }
+      parcelType: $parcelType
+      user: { connect: { userName: "omar" } }
+      price: $price
+    ) {
+      id
+      title
+    }
+  }
+`;
 
 // Initial state of the form data
 const formData = {
@@ -26,39 +54,46 @@ const formData = {
   color: undefined,
   price: undefined,
   parcelType: undefined,
+  condition: undefined,
 };
 
 const NewItemForm = () => {
   const [step, setStep] = useState(1);
   const [formValues, setFormValues] = useState(formData);
   const [images, setImages] = useState([]);
+  const [addItem, { err, loading, data }] = useMutation(CREATE_ITEM_MUTATION);
+
+  useEffect(() => {
+    if (formValues.urls.length > 0) {
+      formValues.urls[0].length !== 0 &&
+        addItem({
+          variables: {
+            brand: formValues.brand,
+            title: formValues.title,
+            description: formValues.description,
+            size: formValues.size,
+            color: formValues.color,
+            parcelType: formValues.parcelType,
+            urls: formValues.urls[0],
+            price: parseFloat(formValues.price),
+            type: formValues.type,
+            condition: formValues.condition,
+          },
+        });
+    }
+  }, [formValues.urls[0]]);
 
   // Get data from the form wizard
-  const getStepOneValues = (values) => {
-    setFormValues((prevState) => {
-      return {
-        ...prevState,
-        ...values,
-      };
-    });
-  };
-  const getStepTwoValues = (values) => {
-    setFormValues((prevState) => {
-      return {
-        ...prevState,
-        ...values,
-      };
-    });
-  };
-  const getFinalStepValues = (values) => {
-    const { parcelType, price } = values;
-    setFormValues((prevState) => {
-      return {
-        ...prevState,
-        parcelType,
-        price,
-      };
-    });
+  const getFormStepsValues = (values) => {
+    // exclude images from state
+    if (!values.images) {
+      setFormValues((prevState) => {
+        return {
+          ...prevState,
+          ...values,
+        };
+      });
+    }
   };
 
   const onUpload = ({ file, onSuccess }) => {
@@ -73,8 +108,7 @@ const NewItemForm = () => {
   // handle upload images to amazon S3
   const handleUpload = async (values) => {
     // get the values from the final step form
-    await getFinalStepValues(values);
-
+    await getFormStepsValues(values);
     let urls = [];
 
     /* loop over images state and upload them
@@ -94,18 +128,23 @@ const NewItemForm = () => {
     });
   };
 
+  console.log("form values : ", formValues);
+  console.log("graphql err : ", err);
+  console.log("graphql loading : ", loading);
+  console.log("graphql data : ", data);
+
   // choose which step to render in form
   const STEPS_ENUM = {
     1: (
       <StepOne
         increaseStep={() => setStep((prevStep) => prevStep + 1)}
-        onSubmit={getStepOneValues}
+        onSubmit={getFormStepsValues}
         customUpload={onUpload}
       />
     ),
     2: (
       <StepTwo
-        onSubmit={getStepTwoValues}
+        onSubmit={getFormStepsValues}
         decreaseStep={() => setStep((prevStep) => prevStep - 1)}
         increaseStep={() => setStep((prevStep) => prevStep + 1)}
       />

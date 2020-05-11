@@ -25,12 +25,14 @@ exports.sign_s3 = (req, res) => {
     ACL: "public-read",
   };
 
+  // ask for signed request
   s3.getSignedUrl("putObject", s3Params, (err, data) => {
     if (err) {
       console.log("error on getting signed url : ", err);
       res.json({ success: false, error: err });
     }
 
+    // return signed request and image URL to client
     const returnData = {
       signedRequest: data,
       url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
