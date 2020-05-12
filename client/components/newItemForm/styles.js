@@ -1,19 +1,52 @@
 import { Radio, Form, Upload } from "antd";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const { Item } = Form;
+
+const loading = keyframes`
+  from {
+    background-posittion: 0 0 
+  }
+  to {
+    background-position: 100% 100%
+  }
+`;
 
 const FormDiv = styled.div`
   width: 70%;
   margin: 0 auto;
   border-radius: 1rem;
 
-  padding: 3rem 5rem 5rem 5rem;
+  padding: 2rem 5rem 5rem 5rem;
   box-shadow: var(--box-shadow);
   @media (max-width: 900px) {
     padding: 1rem 1rem 3rem 1rem;
     margin: 0 auto;
     width: 100%;
+  }
+`;
+
+export const Fieldset = styled.fieldset`
+  border: 0;
+  margin-bottom: 2rem;
+  padding: 0;
+  &[disabled] {
+    opacity: 0.5;
+  }
+  &::before {
+    height: 10px;
+    content: "";
+    display: block;
+    background-image: linear-gradient(
+      to right,
+      lightpink 0%,
+      #2194ff 50%,
+      lightpink 100%
+    );
+  }
+  &[aria-busy="true"]::before {
+    background-size: 50% auto;
+    animation: ${loading} 0.5s linear infinite;
   }
 `;
 

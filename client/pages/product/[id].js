@@ -73,6 +73,8 @@ const Product = () => {
   });
   const item = data && data.getItemById;
 
+  console.log("item : ", item);
+
   // Grid Gallery needs those infos in an object
   const itemPhotos =
     data &&

@@ -38,6 +38,7 @@ const StepOne = ({ onSubmit, increaseStep, customUpload }) => {
           listType="picture"
           onChange={handleUpload}
           customRequest={customUpload}
+          disabled={images.length === 4}
         >
           <div className="upload--content">
             <PlusOutlined />

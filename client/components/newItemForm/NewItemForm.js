@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import FinalStep from "./FinalStep";
-import FormDiv from "./styles";
+import FormDiv, { Fieldset } from "./styles";
 import { uploadImages } from "../../lib/api";
+import FormSuccess from "./FormSuccess";
 
 const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(
@@ -37,7 +38,6 @@ const CREATE_ITEM_MUTATION = gql`
       price: $price
     ) {
       id
-      title
     }
   }
 `;
@@ -61,7 +61,7 @@ const NewItemForm = () => {
   const [step, setStep] = useState(1);
   const [formValues, setFormValues] = useState(formData);
   const [images, setImages] = useState([]);
-  const [addItem, { err, loading, data }] = useMutation(CREATE_ITEM_MUTATION);
+  const [addItem, { error, loading, data }] = useMutation(CREATE_ITEM_MUTATION);
 
   useEffect(() => {
     if (formValues.urls.length > 0) {
@@ -128,11 +128,6 @@ const NewItemForm = () => {
     });
   };
 
-  console.log("form values : ", formValues);
-  console.log("graphql err : ", err);
-  console.log("graphql loading : ", loading);
-  console.log("graphql data : ", data);
-
   // choose which step to render in form
   const STEPS_ENUM = {
     1: (
@@ -152,18 +147,23 @@ const NewItemForm = () => {
     3: (
       <FinalStep
         decreaseStep={() => setStep((prevStep) => prevStep - 1)}
+        increaseStep={() => setStep((prevStep) => prevStep + 1)}
         onSubmit={handleUpload}
       />
     ),
+    4: !error && data ? <FormSuccess itemId={data.createItem.id} /> : null,
   };
 
   return (
-    <FormDiv>
-      <div>
-        <h3>Étape {step}/3</h3>
-        {STEPS_ENUM[step]}
-      </div>
-    </FormDiv>
+    <Fragment>
+      <FormDiv>
+        <Fieldset disabled={loading} aria-busy={loading} />
+        <div>
+          {step <= 3 && <h3>Étape {step}/3</h3>}
+          {STEPS_ENUM[step]}
+        </div>
+      </FormDiv>
+    </Fragment>
   );
 };
 

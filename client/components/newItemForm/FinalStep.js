@@ -12,7 +12,7 @@ const config = {
   rules: [{ required: true }],
 };
 
-const FinalStep = ({ onSubmit, decreaseStep }) => {
+const FinalStep = ({ onSubmit, decreaseStep, increaseStep }) => {
   const { values, handleChange, setValues } = useForm();
 
   const handleSubmit = (values) => {
@@ -22,6 +22,7 @@ const FinalStep = ({ onSubmit, decreaseStep }) => {
       price,
       parcelType,
     });
+    increaseStep();
   };
 
   const onSelectCondition = (value) => {
@@ -85,7 +86,6 @@ const FinalStep = ({ onSubmit, decreaseStep }) => {
         htmlType="submit"
         shape="round"
         btnvalue="Ajouter"
-        onClick={handleSubmit}
       />
     </Form>
   );
