@@ -8,13 +8,14 @@ const StyledGallery = styled.div`
     margin: 0rem;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 300px));
+    grid-template-columns: repeat(3, minmax(120px, 260px));
     justify-content: center;
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(2, minmax(120px, 260px));
+    }
     img {
       object-fit: cover;
     }
-  }
-  @media (max-width: 1025px) {
   }
 `;
 

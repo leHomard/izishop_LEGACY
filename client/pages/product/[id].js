@@ -39,6 +39,51 @@ const QUERY_GET_BY_PRODUCT_ID = gql`
   }
 `;
 
+const images = [
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+];
+
 const Product = () => {
   const { query } = useRouter();
   const { data, loading, error } = useQuery(QUERY_GET_BY_PRODUCT_ID, {
@@ -63,7 +108,7 @@ const Product = () => {
   if (item) {
     return (
       <ItemContainer>
-        <GridGallery photos={itemPhotos} />
+        <GridGallery photos={images} />
         <ItemInfoCard item={item} />
       </ItemContainer>
     );

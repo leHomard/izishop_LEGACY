@@ -22,7 +22,7 @@ const ItemInfoProperties = ({ item }) => {
     { title: "COULEUR", value: color },
     { title: "TAILLE", value: size },
     { title: "TYPE", value: type },
-    { title: "CATÉGORIE", value: categories[0] },
+    { title: "CATÉGORIE", value: categories },
     { title: "ÉTAT", value: "neuf" },
     { title: "NOMBRE DE VUES", value: nbViews },
     { title: "INTÉRESSÉ PAR", value: nbInterested },
@@ -32,7 +32,7 @@ const ItemInfoProperties = ({ item }) => {
     <div>
       <div className="meta--info--title">
         <h3>{brand}</h3>
-        <h2>${price}</h2>
+        <h2>{price} Dhs</h2>
       </div>
       <h4>{description}</h4>
       <ListItemValue obj={listData} />

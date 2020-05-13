@@ -2,6 +2,20 @@ import App from "next/app";
 import { ApolloProvider } from "@apollo/client";
 import Page from "../components/Page";
 import withData from "../hoc/withData";
+import Router from "next/router";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+
+//Binding NProgress events.
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+};
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+Router.onRouteChangeError = () => {
+  NProgress.done();
+};
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

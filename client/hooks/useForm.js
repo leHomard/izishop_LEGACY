@@ -4,11 +4,12 @@ const useForm = () => {
   const [values, setValues] = useState({});
 
   function handleChange(e) {
-    const { name, value } = e.target;
+    const { name, type, value } = e.target;
+    const val = type === "number" ? parseFloat(value) : value;
     e.preventDefault();
     setValues((prevValues) => ({
       ...prevValues,
-      [name]: value,
+      [name]: val,
     }));
   }
 

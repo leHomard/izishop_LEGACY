@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/omar-harras-df65b3/vinted-clone/dev
-# timestamp: Thu Apr 30 2020 16:10:41 GMT+0200 (Central European Summer Time)
+# timestamp: Sun May 10 2020 15:37:33 GMT+0200 (Central European Summer Time)
 
 type AggregateItem {
   count: Int!
@@ -25,6 +25,12 @@ enum Category {
   HOME
 }
 
+enum Condition {
+  NEW
+  VG_CONDITION
+  G_CONDITION
+}
+
 scalar DateTime
 
 type Item implements Node {
@@ -32,14 +38,16 @@ type Item implements Node {
   title: String!
   description: String!
   imagesUrl: [String!]!
-  price: Int!
+  price: Float!
   user: User
-  type: String!
+  condition: [Condition!]!
+  type: [Type!]!
   categories: [Category!]!
-  size: String!
+  size: String
   color: String!
   brand: String!
   nbViews: Int
+  parcelType: String!
   nbInterested: Int
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -59,6 +67,10 @@ input ItemCreatecategoriesInput {
   set: [Category!]
 }
 
+input ItemCreateconditionInput {
+  set: [Condition!]
+}
+
 input ItemCreateimagesUrlInput {
   set: [String!]
 }
@@ -67,14 +79,16 @@ input ItemCreateInput {
   id: ID
   title: String!
   description: String!
-  price: Int!
-  type: String!
-  size: String!
+  price: Float!
+  size: String
   color: String!
   brand: String!
   nbViews: Int
+  parcelType: String!
   nbInterested: Int
   imagesUrl: ItemCreateimagesUrlInput
+  condition: ItemCreateconditionInput
+  type: ItemCreatetypeInput
   categories: ItemCreatecategoriesInput
   user: UserCreateOneWithoutItemsInput
 }
@@ -84,18 +98,24 @@ input ItemCreateManyWithoutUserInput {
   connect: [ItemWhereUniqueInput!]
 }
 
+input ItemCreatetypeInput {
+  set: [Type!]
+}
+
 input ItemCreateWithoutUserInput {
   id: ID
   title: String!
   description: String!
-  price: Int!
-  type: String!
-  size: String!
+  price: Float!
+  size: String
   color: String!
   brand: String!
   nbViews: Int
+  parcelType: String!
   nbInterested: Int
   imagesUrl: ItemCreateimagesUrlInput
+  condition: ItemCreateconditionInput
+  type: ItemCreatetypeInput
   categories: ItemCreatecategoriesInput
 }
 
@@ -117,8 +137,6 @@ enum ItemOrderByInput {
   description_DESC
   price_ASC
   price_DESC
-  type_ASC
-  type_DESC
   size_ASC
   size_DESC
   color_ASC
@@ -127,6 +145,8 @@ enum ItemOrderByInput {
   brand_DESC
   nbViews_ASC
   nbViews_DESC
+  parcelType_ASC
+  parcelType_DESC
   nbInterested_ASC
   nbInterested_DESC
   createdAt_ASC
@@ -140,13 +160,15 @@ type ItemPreviousValues {
   title: String!
   description: String!
   imagesUrl: [String!]!
-  price: Int!
-  type: String!
+  price: Float!
+  condition: [Condition!]!
+  type: [Type!]!
   categories: [Category!]!
-  size: String!
+  size: String
   color: String!
   brand: String!
   nbViews: Int
+  parcelType: String!
   nbInterested: Int
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -281,68 +303,28 @@ input ItemScalarWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
-  price: Int
+  price: Float
 
   """All values that are not equal to given value."""
-  price_not: Int
+  price_not: Float
 
   """All values that are contained in given list."""
-  price_in: [Int!]
+  price_in: [Float!]
 
   """All values that are not contained in given list."""
-  price_not_in: [Int!]
+  price_not_in: [Float!]
 
   """All values less than the given value."""
-  price_lt: Int
+  price_lt: Float
 
   """All values less than or equal the given value."""
-  price_lte: Int
+  price_lte: Float
 
   """All values greater than the given value."""
-  price_gt: Int
+  price_gt: Float
 
   """All values greater than or equal the given value."""
-  price_gte: Int
-  type: String
-
-  """All values that are not equal to given value."""
-  type_not: String
-
-  """All values that are contained in given list."""
-  type_in: [String!]
-
-  """All values that are not contained in given list."""
-  type_not_in: [String!]
-
-  """All values less than the given value."""
-  type_lt: String
-
-  """All values less than or equal the given value."""
-  type_lte: String
-
-  """All values greater than the given value."""
-  type_gt: String
-
-  """All values greater than or equal the given value."""
-  type_gte: String
-
-  """All values containing the given string."""
-  type_contains: String
-
-  """All values not containing the given string."""
-  type_not_contains: String
-
-  """All values starting with the given string."""
-  type_starts_with: String
-
-  """All values not starting with the given string."""
-  type_not_starts_with: String
-
-  """All values ending with the given string."""
-  type_ends_with: String
-
-  """All values not ending with the given string."""
-  type_not_ends_with: String
+  price_gte: Float
   size: String
 
   """All values that are not equal to given value."""
@@ -485,6 +467,46 @@ input ItemScalarWhereInput {
 
   """All values greater than or equal the given value."""
   nbViews_gte: Int
+  parcelType: String
+
+  """All values that are not equal to given value."""
+  parcelType_not: String
+
+  """All values that are contained in given list."""
+  parcelType_in: [String!]
+
+  """All values that are not contained in given list."""
+  parcelType_not_in: [String!]
+
+  """All values less than the given value."""
+  parcelType_lt: String
+
+  """All values less than or equal the given value."""
+  parcelType_lte: String
+
+  """All values greater than the given value."""
+  parcelType_gt: String
+
+  """All values greater than or equal the given value."""
+  parcelType_gte: String
+
+  """All values containing the given string."""
+  parcelType_contains: String
+
+  """All values not containing the given string."""
+  parcelType_not_contains: String
+
+  """All values starting with the given string."""
+  parcelType_starts_with: String
+
+  """All values not starting with the given string."""
+  parcelType_not_starts_with: String
+
+  """All values ending with the given string."""
+  parcelType_ends_with: String
+
+  """All values not ending with the given string."""
+  parcelType_not_ends_with: String
   nbInterested: Int
 
   """All values that are not equal to given value."""
@@ -594,6 +616,10 @@ input ItemUpdatecategoriesInput {
   set: [Category!]
 }
 
+input ItemUpdateconditionInput {
+  set: [Condition!]
+}
+
 input ItemUpdateimagesUrlInput {
   set: [String!]
 }
@@ -601,14 +627,16 @@ input ItemUpdateimagesUrlInput {
 input ItemUpdateInput {
   title: String
   description: String
-  price: Int
-  type: String
+  price: Float
   size: String
   color: String
   brand: String
   nbViews: Int
+  parcelType: String
   nbInterested: Int
   imagesUrl: ItemUpdateimagesUrlInput
+  condition: ItemUpdateconditionInput
+  type: ItemUpdatetypeInput
   categories: ItemUpdatecategoriesInput
   user: UserUpdateOneWithoutItemsInput
 }
@@ -616,28 +644,32 @@ input ItemUpdateInput {
 input ItemUpdateManyDataInput {
   title: String
   description: String
-  price: Int
-  type: String
+  price: Float
   size: String
   color: String
   brand: String
   nbViews: Int
+  parcelType: String
   nbInterested: Int
   imagesUrl: ItemUpdateimagesUrlInput
+  condition: ItemUpdateconditionInput
+  type: ItemUpdatetypeInput
   categories: ItemUpdatecategoriesInput
 }
 
 input ItemUpdateManyMutationInput {
   title: String
   description: String
-  price: Int
-  type: String
+  price: Float
   size: String
   color: String
   brand: String
   nbViews: Int
+  parcelType: String
   nbInterested: Int
   imagesUrl: ItemUpdateimagesUrlInput
+  condition: ItemUpdateconditionInput
+  type: ItemUpdatetypeInput
   categories: ItemUpdatecategoriesInput
 }
 
@@ -658,17 +690,23 @@ input ItemUpdateManyWithWhereNestedInput {
   data: ItemUpdateManyDataInput!
 }
 
+input ItemUpdatetypeInput {
+  set: [Type!]
+}
+
 input ItemUpdateWithoutUserDataInput {
   title: String
   description: String
-  price: Int
-  type: String
+  price: Float
   size: String
   color: String
   brand: String
   nbViews: Int
+  parcelType: String
   nbInterested: Int
   imagesUrl: ItemUpdateimagesUrlInput
+  condition: ItemUpdateconditionInput
+  type: ItemUpdatetypeInput
   categories: ItemUpdatecategoriesInput
 }
 
@@ -812,68 +850,28 @@ input ItemWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
-  price: Int
+  price: Float
 
   """All values that are not equal to given value."""
-  price_not: Int
+  price_not: Float
 
   """All values that are contained in given list."""
-  price_in: [Int!]
+  price_in: [Float!]
 
   """All values that are not contained in given list."""
-  price_not_in: [Int!]
+  price_not_in: [Float!]
 
   """All values less than the given value."""
-  price_lt: Int
+  price_lt: Float
 
   """All values less than or equal the given value."""
-  price_lte: Int
+  price_lte: Float
 
   """All values greater than the given value."""
-  price_gt: Int
+  price_gt: Float
 
   """All values greater than or equal the given value."""
-  price_gte: Int
-  type: String
-
-  """All values that are not equal to given value."""
-  type_not: String
-
-  """All values that are contained in given list."""
-  type_in: [String!]
-
-  """All values that are not contained in given list."""
-  type_not_in: [String!]
-
-  """All values less than the given value."""
-  type_lt: String
-
-  """All values less than or equal the given value."""
-  type_lte: String
-
-  """All values greater than the given value."""
-  type_gt: String
-
-  """All values greater than or equal the given value."""
-  type_gte: String
-
-  """All values containing the given string."""
-  type_contains: String
-
-  """All values not containing the given string."""
-  type_not_contains: String
-
-  """All values starting with the given string."""
-  type_starts_with: String
-
-  """All values not starting with the given string."""
-  type_not_starts_with: String
-
-  """All values ending with the given string."""
-  type_ends_with: String
-
-  """All values not ending with the given string."""
-  type_not_ends_with: String
+  price_gte: Float
   size: String
 
   """All values that are not equal to given value."""
@@ -1016,6 +1014,46 @@ input ItemWhereInput {
 
   """All values greater than or equal the given value."""
   nbViews_gte: Int
+  parcelType: String
+
+  """All values that are not equal to given value."""
+  parcelType_not: String
+
+  """All values that are contained in given list."""
+  parcelType_in: [String!]
+
+  """All values that are not contained in given list."""
+  parcelType_not_in: [String!]
+
+  """All values less than the given value."""
+  parcelType_lt: String
+
+  """All values less than or equal the given value."""
+  parcelType_lte: String
+
+  """All values greater than the given value."""
+  parcelType_gt: String
+
+  """All values greater than or equal the given value."""
+  parcelType_gte: String
+
+  """All values containing the given string."""
+  parcelType_contains: String
+
+  """All values not containing the given string."""
+  parcelType_not_contains: String
+
+  """All values starting with the given string."""
+  parcelType_starts_with: String
+
+  """All values not starting with the given string."""
+  parcelType_not_starts_with: String
+
+  """All values ending with the given string."""
+  parcelType_ends_with: String
+
+  """All values not ending with the given string."""
+  parcelType_not_ends_with: String
   nbInterested: Int
 
   """All values that are not equal to given value."""
@@ -1577,6 +1615,13 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   item(where: ItemSubscriptionWhereInput): ItemSubscriptionPayload
   location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
+}
+
+enum Type {
+  CLOTHES
+  SHOES
+  ACCESSORIES
+  DECORATION
 }
 
 type User implements Node {

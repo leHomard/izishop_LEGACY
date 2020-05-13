@@ -7,19 +7,12 @@ const StyledButton = styled(Button)`
   color: white;
 `;
 
-const BtnComp = ({ btnValue, onClick, type, shape }) => {
-  return (
-    <StyledButton type={type} shape={shape} onClick={onClick}>
-      {btnValue}
-    </StyledButton>
-  );
+const BtnComp = (props) => {
+  return <StyledButton {...props}>{props.btnvalue}</StyledButton>;
 };
 
 BtnComp.prototype = {
-  btnValue: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  type: PropTypes.string,
-  shape: PropTypes.string,
+  btnvalue: PropTypes.string.isRequired,
 };
 
 export default BtnComp;

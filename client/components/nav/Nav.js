@@ -1,4 +1,4 @@
-import { Menu, Avatar } from "antd";
+import { Menu, Avatar, Button } from "antd";
 import Link from "next/link";
 import StyledMenu from "./styles";
 import { useMutation } from "@apollo/client";
@@ -37,11 +37,15 @@ const Nav = () => {
       {currentUser && currentUser.data && (
         <StyledMenu mode="horizontal">
           <Item className="modified-item">
-            <BtnComp
-              type="primary"
-              shape="round"
-              btnValue="Ajouter un article"
-            />
+            <Link href="additem">
+              <a>
+                <BtnComp
+                  type="primary"
+                  shape="round"
+                  btnvalue="Ajouter un article"
+                />
+              </a>
+            </Link>
           </Item>
           <SubMenu
             style={{ padding: "0" }}
@@ -90,7 +94,7 @@ const Nav = () => {
                 <BtnComp
                   type="primary"
                   shape="round"
-                  btnValue="Rejoingnez nous"
+                  btnvalue="Rejoingnez nous"
                 />
               </a>
             </Link>
