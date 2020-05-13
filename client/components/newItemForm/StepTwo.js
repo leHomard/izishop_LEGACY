@@ -60,7 +60,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
   const sizeConfig = {
     rules: [
       {
-        required: values.type === "Deco" ? false : true,
+        required: values.type === "DECORATION" ? false : true,
         message: "Veuillez saisir ce champ",
       },
     ],
@@ -125,7 +125,7 @@ const StepTwo = ({ onSubmit, increaseStep, decreaseStep }) => {
       </Item>
       <Item {...sizeConfig} labelAlign="left" label="Taille" name="size">
         <Input
-          disabled={values.type === "Deco"}
+          disabled={values.type === "DECORATION"}
           name="size"
           value={values.size}
           onChange={handleChange}
