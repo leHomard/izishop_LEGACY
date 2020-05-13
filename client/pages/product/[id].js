@@ -39,32 +39,50 @@ const QUERY_GET_BY_PRODUCT_ID = gql`
   }
 `;
 
-// const images = [
-//   {
-//     src: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_1.jpeg",
-//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_1.jpeg",
-//     thumbnailWidth: 320,
-//     thumbnailHeight: 320,
-//   },
-//   {
-//     src: "https://izishop.s3.eu-west-3.amazonaws.com/3472153-2.jpg",
-//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/3472153-2.jpg",
-//     thumbnailWidth: 320,
-//     thumbnailHeight: 320,
-//   },
-//   {
-//     src: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_2.jpeg",
-//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_2.jpeg",
-//     thumbnailWidth: 320,
-//     thumbnailHeight: 320,
-//   },
-//   {
-//     src: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_3.jpeg",
-//     thumbnail: "https://izishop.s3.eu-west-3.amazonaws.com/WB158017343_3.jpeg",
-//     thumbnailWidth: 320,
-//     thumbnailHeight: 320,
-//   },
-// ];
+const images = [
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+  {
+    src: "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnail:
+      "https://photos6.spartoo.com/photos/294/2949806/2949806_500_B.jpg",
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
+  },
+];
 
 const Product = () => {
   const { query } = useRouter();
@@ -72,8 +90,6 @@ const Product = () => {
     variables: { id: query.id },
   });
   const item = data && data.getItemById;
-
-  console.log("item : ", item);
 
   // Grid Gallery needs those infos in an object
   const itemPhotos =
@@ -92,7 +108,7 @@ const Product = () => {
   if (item) {
     return (
       <ItemContainer>
-        <GridGallery photos={itemPhotos} />
+        <GridGallery photos={images} />
         <ItemInfoCard item={item} />
       </ItemContainer>
     );

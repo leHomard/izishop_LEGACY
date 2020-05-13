@@ -1,12 +1,22 @@
 import { Form, Radio, Input, Select } from "antd";
 
-import { StyledRadio } from "./styles";
+import { StyledRadio, StyledItem } from "./styles";
 import useForm from "../../hooks/useForm";
 import BtnComp from "../UI/Button";
-import { useState } from "react";
 
 const { Item } = Form;
 const { Option } = Select;
+
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 2 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 24 },
+  },
+};
 
 const config = {
   rules: [{ required: true }],
@@ -35,8 +45,8 @@ const FinalStep = ({ onSubmit, decreaseStep, increaseStep }) => {
   };
 
   return (
-    <Form onFinish={handleSubmit}>
-      <Item labelAlign="left" label="État" name="condition">
+    <Form {...formItemLayout} onFinish={handleSubmit}>
+      <Item {...config} labelAlign="left" label="État" name="condition">
         <Select
           value={values.condition}
           onChange={onSelectCondition}
@@ -48,7 +58,7 @@ const FinalStep = ({ onSubmit, decreaseStep, increaseStep }) => {
           <Option value="G_CONDITION">Bon état</Option>
         </Select>
       </Item>
-      <Item {...config} name="price" label="Prix">
+      <Item {...config} labelAlign="left" name="price" label="Prix">
         <Input
           type="number"
           name="price"

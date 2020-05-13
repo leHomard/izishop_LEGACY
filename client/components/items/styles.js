@@ -12,7 +12,7 @@ const ItemsList = styled.div`
 
 export const StyledCard = styled(Card)`
   height: 600px;
-  width: 30%;
+  width: 25%;
   box-shadow: var(--box-shadow);
   margin: 1rem 0 0 0;
   border-radius: 1rem;

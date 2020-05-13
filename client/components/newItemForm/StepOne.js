@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import axios from "axios";
 
-import useForm from "../../hooks/useForm";
 import BtnComp from "../UI/Button";
 import { StyledUpload } from "./styles";
-import { endpoint } from "../../config";
 
 const { Item } = Form;
 
@@ -38,11 +35,11 @@ const StepOne = ({ onSubmit, increaseStep, customUpload }) => {
           listType="picture"
           onChange={handleUpload}
           customRequest={customUpload}
-          disabled={images.length === 4}
+          disabled={images.length === 6}
         >
           <div className="upload--content">
             <PlusOutlined />
-            <p>Ajoute 4 photos de ton article</p>
+            <p>Ajoute 6 photos de ton article</p>
           </div>
         </StyledUpload>
       </Item>
