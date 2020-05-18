@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 
 import Items from "../components/items/Items";
+import ItemsSection from "../components/items/ItemsSection";
 import Hero from "../components/hero/hero";
 import Button from "../components/UI/Button";
 import TopBrands from "../components/TopBrands";
@@ -27,7 +28,8 @@ const Home = () => {
         </Hero>
       )}
       <TopBrands />
-      <Items />
+      {/* <Items /> */}
+      <ItemsSection />
     </Fragment>
   );
 };

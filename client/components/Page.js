@@ -39,8 +39,9 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
+    font-weight: 450;
     line-height: 2;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Alegreya Sans', sans-serif;
   }
   a {
     text-decoration: none;

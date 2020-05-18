@@ -21,13 +21,16 @@ const StyledCard = styled(Card)`
 const Item = ({ size, description, imgUrl, id, loading }) => {
   return (
     <Link href={`product/[id]`} as={`product/${id}`}>
-      <StyledCard
-        loading={loading}
-        hoverable
-        cover={<img alt="image" src={imgUrl} />}
-      >
-        <Meta title={size} description={description} />
-      </StyledCard>
+      <CardContainer>
+        <div className="card--header"></div>
+        <StyledCard
+          loading={loading}
+          hoverable
+          cover={<img alt="image" src={imgUrl} />}
+        >
+          <Meta title={size} description={description} />
+        </StyledCard>
+      </CardContainer>
     </Link>
   );
 };

@@ -4,10 +4,33 @@ import { Card, Form } from "antd";
 const ItemsList = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-template-rows: auto;
   justify-items: center;
-  gap: 1.2rem 1.2rem;
+  gap: 5rem 1.2rem;
+`;
+
+export const ItemsSectionContainer = styled.div`
+  padding: 0 0 5rem 0;
+  .section--header {
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    h3 {
+      margin-right: 14px;
+    }
+    span {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      padding-bottom: 6px;
+    }
+    span:hover {
+      text-decoration: underline;
+      cursor: pointer;
+      color: ${(props) => props.theme.greytext};
+    }
+  }
 `;
 
 export const StyledCard = styled(Card)`
