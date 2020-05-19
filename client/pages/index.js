@@ -28,8 +28,8 @@ const Home = () => {
         </Hero>
       )}
       <TopBrands />
-      {/* <Items /> */}
       <ItemsSection />
+      {/* <Items /> */}
     </Fragment>
   );
 };

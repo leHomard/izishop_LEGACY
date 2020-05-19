@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 
 import CardItem from "../CardItem/CardItem";
 import ItemsList, { ItemsSectionContainer } from "./styles";
+import EmptyCard from "../CardItem/EmptyCard";
 
 const RECENTLY_ADDED_ITEMS = gql`
   query RECENTLY_ADDED_QUERY {
@@ -32,7 +33,7 @@ const ItemsSection = () => {
   return (
     <ItemsSectionContainer>
       <div className="section--header">
-        <h3>Ajouté recemment</h3>
+        <h3>Ajoutés récemment</h3>
         <span>Voir plus</span>
       </div>
       <ItemsList>
@@ -48,7 +49,9 @@ const ItemsSection = () => {
             imgUrl={item.thumbnail}
           />
         ))}
-        <Card title="see more..." />
+        <EmptyCard
+          textContent={"Voir les " + recentItems.length + " articles..."}
+        />
       </ItemsList>
     </ItemsSectionContainer>
   );

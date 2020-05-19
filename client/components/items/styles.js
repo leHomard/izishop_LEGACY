@@ -7,7 +7,7 @@ const ItemsList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-template-rows: auto;
   justify-items: center;
-  gap: 5rem 1.2rem;
+  gap: 2.5rem 1.2rem;
 `;
 
 export const ItemsSectionContainer = styled.div`
