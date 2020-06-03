@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/omar-harras-df65b3/vinted-clone/dev
-# timestamp: Sun May 10 2020 15:37:33 GMT+0200 (Central European Summer Time)
+# timestamp: Mon May 18 2020 22:34:29 GMT+0200 (Central European Summer Time)
 
 type AggregateItem {
   count: Int!
@@ -38,6 +38,7 @@ type Item implements Node {
   title: String!
   description: String!
   imagesUrl: [String!]!
+  thumbnail: String!
   price: Float!
   user: User
   condition: [Condition!]!
@@ -79,6 +80,7 @@ input ItemCreateInput {
   id: ID
   title: String!
   description: String!
+  thumbnail: String!
   price: Float!
   size: String
   color: String!
@@ -106,6 +108,7 @@ input ItemCreateWithoutUserInput {
   id: ID
   title: String!
   description: String!
+  thumbnail: String!
   price: Float!
   size: String
   color: String!
@@ -135,6 +138,8 @@ enum ItemOrderByInput {
   title_DESC
   description_ASC
   description_DESC
+  thumbnail_ASC
+  thumbnail_DESC
   price_ASC
   price_DESC
   size_ASC
@@ -160,6 +165,7 @@ type ItemPreviousValues {
   title: String!
   description: String!
   imagesUrl: [String!]!
+  thumbnail: String!
   price: Float!
   condition: [Condition!]!
   type: [Type!]!
@@ -303,6 +309,46 @@ input ItemScalarWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
+  thumbnail: String
+
+  """All values that are not equal to given value."""
+  thumbnail_not: String
+
+  """All values that are contained in given list."""
+  thumbnail_in: [String!]
+
+  """All values that are not contained in given list."""
+  thumbnail_not_in: [String!]
+
+  """All values less than the given value."""
+  thumbnail_lt: String
+
+  """All values less than or equal the given value."""
+  thumbnail_lte: String
+
+  """All values greater than the given value."""
+  thumbnail_gt: String
+
+  """All values greater than or equal the given value."""
+  thumbnail_gte: String
+
+  """All values containing the given string."""
+  thumbnail_contains: String
+
+  """All values not containing the given string."""
+  thumbnail_not_contains: String
+
+  """All values starting with the given string."""
+  thumbnail_starts_with: String
+
+  """All values not starting with the given string."""
+  thumbnail_not_starts_with: String
+
+  """All values ending with the given string."""
+  thumbnail_ends_with: String
+
+  """All values not ending with the given string."""
+  thumbnail_not_ends_with: String
   price: Float
 
   """All values that are not equal to given value."""
@@ -627,6 +673,7 @@ input ItemUpdateimagesUrlInput {
 input ItemUpdateInput {
   title: String
   description: String
+  thumbnail: String
   price: Float
   size: String
   color: String
@@ -644,6 +691,7 @@ input ItemUpdateInput {
 input ItemUpdateManyDataInput {
   title: String
   description: String
+  thumbnail: String
   price: Float
   size: String
   color: String
@@ -660,6 +708,7 @@ input ItemUpdateManyDataInput {
 input ItemUpdateManyMutationInput {
   title: String
   description: String
+  thumbnail: String
   price: Float
   size: String
   color: String
@@ -697,6 +746,7 @@ input ItemUpdatetypeInput {
 input ItemUpdateWithoutUserDataInput {
   title: String
   description: String
+  thumbnail: String
   price: Float
   size: String
   color: String
@@ -850,6 +900,46 @@ input ItemWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
+  thumbnail: String
+
+  """All values that are not equal to given value."""
+  thumbnail_not: String
+
+  """All values that are contained in given list."""
+  thumbnail_in: [String!]
+
+  """All values that are not contained in given list."""
+  thumbnail_not_in: [String!]
+
+  """All values less than the given value."""
+  thumbnail_lt: String
+
+  """All values less than or equal the given value."""
+  thumbnail_lte: String
+
+  """All values greater than the given value."""
+  thumbnail_gt: String
+
+  """All values greater than or equal the given value."""
+  thumbnail_gte: String
+
+  """All values containing the given string."""
+  thumbnail_contains: String
+
+  """All values not containing the given string."""
+  thumbnail_not_contains: String
+
+  """All values starting with the given string."""
+  thumbnail_starts_with: String
+
+  """All values not starting with the given string."""
+  thumbnail_not_starts_with: String
+
+  """All values ending with the given string."""
+  thumbnail_ends_with: String
+
+  """All values not ending with the given string."""
+  thumbnail_not_ends_with: String
   price: Float
 
   """All values that are not equal to given value."""

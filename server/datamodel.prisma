@@ -53,6 +53,7 @@ type Item {
   title: String!
   description: String!
   imagesUrl: [String] @scalarList(strategy: RELATION)
+  thumbnail: String!
   price: Float!
   user: User
   condition: [Condition]! @scalarList(strategy: RELATION)

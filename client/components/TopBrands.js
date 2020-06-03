@@ -53,7 +53,7 @@ const TopBrands = () => {
   ];
   return (
     <StyledTopBrands>
-      <h3>LES MARQUES DU MOMENT</h3>
+      <h3>Les marques du moment</h3>
       <div className="top--brands--avatar">
         {brands.map((brand, i) => (
           <Avatar
@@ -61,7 +61,7 @@ const TopBrands = () => {
             style={{
               backgroundColor: colors[i],
               color: "black",
-              fontSize: "small",
+              fontSize: "12px",
               marginRight: "1rem",
             }}
             size={124}

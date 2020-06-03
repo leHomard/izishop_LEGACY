@@ -91,11 +91,7 @@ const Nav = () => {
           <Item>
             <Link href="login">
               <a>
-                <BtnComp
-                  type="primary"
-                  shape="round"
-                  btnvalue="Rejoingnez nous"
-                />
+                <BtnComp type="primary" shape="round" btnvalue="Se connecter" />
               </a>
             </Link>
           </Item>

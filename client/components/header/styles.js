@@ -5,7 +5,7 @@ const { Search } = Input;
 
 const StyledHeader = styled.header`
   background-color: ${(props) => props.theme.lightgrey};
-  border-bottom: 5px solid ${(props) => props.theme.blue};
+  border-bottom: 4px solid ${(props) => props.theme.blue};
   height: 70px;
   width: 100%;
   position: fixed;
@@ -41,8 +41,12 @@ export const StyledSearch = styled(Search)`
 
 export const Logo = styled.div`
   width: 150px;
+  padding-top: 3px;
   @media (max-width: 890px) {
     width: 80px;
+  }
+  img {
+    width: 185px;
   }
 `;
 

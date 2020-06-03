@@ -18,6 +18,7 @@ type Mutation {
     user: UserInput!
     parcelType: String!
     imagesUrl: ImagesUrlInput!
+    thumbnail: String!
   ): Item!
   signup(
     userName: String!
@@ -33,6 +34,7 @@ type Mutation {
 type Query {
   allItems: [Item]!
   getItemById(id: ID!): Item!
+  recentItems: [Item]!
   me: User
 }
 

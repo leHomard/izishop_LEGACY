@@ -3,6 +3,17 @@ const Query = {
     const items = await ctx.db.query.items({}, info);
     return items;
   },
+  recentItems: async (parent, args, ctx, info) => {
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
+
+    const items = await ctx.db.query.items({
+      where: {
+        createdAt_gte: weekAgo,
+      },
+    });
+    return items;
+  },
   getItemById: async (parent, { id }, ctx, info) => {
     const item = await ctx.db.query.item({ where: { id } }, info);
     return item;
