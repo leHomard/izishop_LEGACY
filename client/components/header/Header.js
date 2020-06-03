@@ -19,7 +19,9 @@ const Header = () => {
         <StyledNav>
           <Logo>
             <Link href="/">
-              <a>IZISHOP</a>
+              <a>
+                <img src="/static/new-logo.png" />
+              </a>
             </Link>
           </Logo>
           <SearchBarDiv>

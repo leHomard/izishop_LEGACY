@@ -1,39 +1,15 @@
-import { Card } from "antd";
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/client";
+import PropTypes from "prop-types";
 
 import CardItem from "../CardItem/CardItem";
 import ItemsList, { ItemsSectionContainer } from "./styles";
 import EmptyCard from "../CardItem/EmptyCard";
 
-const RECENTLY_ADDED_ITEMS = gql`
-  query RECENTLY_ADDED_QUERY {
-    recentItems {
-      id
-      brand
-      user {
-        userName
-      }
-      price
-      size
-      nbInterested
-      thumbnail
-      # profilePicture
-    }
-  }
-`;
-
-const ItemsSection = () => {
-  const { data, error, loading } = useQuery(RECENTLY_ADDED_ITEMS);
-  if (!data || error) return <p>error...</p>;
-  if (loading) return <p>Loading...</p>;
-
+const ItemsSection = ({ data, title }) => {
   const { recentItems } = data;
-  console.log(recentItems);
   return (
     <ItemsSectionContainer>
       <div className="section--header">
-        <h3>Ajoutés récemment</h3>
+        <h3>{title}</h3>
         <span>Voir plus</span>
       </div>
       <ItemsList>
@@ -55,6 +31,11 @@ const ItemsSection = () => {
       </ItemsList>
     </ItemsSectionContainer>
   );
+};
+
+ItemsSection.propTypes = {
+  data: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default ItemsSection;

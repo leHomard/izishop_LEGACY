@@ -21,7 +21,8 @@ export const Details = styled.div`
   }
   h3 {
     margin-bottom: -0.3rem;
-    font-size: 28pt;
+    font-size: 26pt;
+    font-weight: 300;
     color: #212121;
     @media (max-width: 680px) {
       font-size: 22pt;
@@ -29,7 +30,7 @@ export const Details = styled.div`
   }
   p {
     margin-bottom: 1rem;
-    font-size: 24pt;
+    font-size: 20pt;
     font-weight: normal;
     color: #707070;
     @media (max-width: 680px) {

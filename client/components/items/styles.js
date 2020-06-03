@@ -17,13 +17,14 @@ export const ItemsSectionContainer = styled.div`
     align-items: center;
     padding: 0 6px;
     h3 {
-      margin-right: 14px;
+      margin-right: 10px;
+      font-size: 13pt;
     }
     span {
       font-weight: 400;
-      font-size: 14px;
-      line-height: 18px;
-      padding-bottom: 6px;
+      font-size: 12px;
+      line-height: 16px;
+      padding-bottom: 4px;
     }
     span:hover {
       text-decoration: underline;

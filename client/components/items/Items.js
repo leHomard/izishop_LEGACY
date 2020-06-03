@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
 import ItemsList from "./styles";
 
-import Item from "./Item";
+import CardItem from "../CardItem/CardItem";
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
@@ -12,6 +12,11 @@ const ALL_ITEMS_QUERY = gql`
       description
       brand
       price
+      size
+      nbInterested
+      user {
+        userName
+      }
       imagesUrl
     }
   }
@@ -25,12 +30,14 @@ const Items = () => {
   return (
     <ItemsList>
       {data.allItems.map((el) => (
-        <Item
+        <CardItem
           key={el.id}
           id={el.id}
-          loading={loading}
-          size={el.title}
-          description={el.description}
+          username={el.userName}
+          nbInterested={el.nbInterested}
+          price={el.price}
+          brand={el.brand}
+          size={el.size}
           imgUrl={el.imagesUrl[0]}
         />
       ))}

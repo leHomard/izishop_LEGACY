@@ -22,6 +22,7 @@ const CardItem = ({
     <Link href={`product/[id]`} as={`product/${id}`}>
       <CardItemContainer>
         <Card
+          style={{ height: "100%" }}
           loading={loading}
           title={<CardHeader username={username} nbInterested={nbInterested} />}
           hoverable
@@ -29,6 +30,7 @@ const CardItem = ({
         >
           <Meta
             title={price + " Dhs"}
+            style={{ fontSize: "8px" }}
             description={<CardDescription brand={brand} size={size} />}
           />
         </Card>

@@ -15,6 +15,14 @@ const CardItemContainer = styled.div`
   .ant-card-body {
     padding: 0;
   }
+  .ant-card-cover {
+    height: 319px;
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
   .ant-card-meta {
     padding: 10px;
   }
@@ -30,7 +38,14 @@ export const HeaderDiv = styled.div`
       font-size: 14px;
       line-height: 16px;
       color: ${(props) => props.theme.greytext};
-      font-weight: 400;
+      font-weight: 200;
+    }
+  }
+  .likes {
+    color: ${(props) => props.theme.greytext};
+    font-size: 13px;
+    a {
+      margin-left: 4px;
     }
   }
 `;
@@ -39,6 +54,7 @@ export const StyledDescription = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 12px;
 `;
 
 export const EmptyCardContent = styled.div`
@@ -49,8 +65,8 @@ export const EmptyCardContent = styled.div`
   text-align: center;
   p {
     margin-top: 10px;
-    font-size: 18px;
-    font-weight: 350;
+    font-size: 14px;
+    font-weight: 400;
     color: ${(props) => props.theme.blue};
   }
   &:hover {

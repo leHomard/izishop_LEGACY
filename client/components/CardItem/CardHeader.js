@@ -15,11 +15,11 @@ const CardHeader = ({ username, nbInterested }) => {
         />
         <span className="user--name">omar</span>
       </div>
-      <span>
+      <span className="likes">
+        {nbInterested}
         <a>
           <HeartOutlined />
         </a>
-        {nbInterested}
       </span>
     </HeaderDiv>
   );

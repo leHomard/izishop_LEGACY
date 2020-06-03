@@ -14,7 +14,7 @@ const EmptyCard = ({ textContent }) => {
 };
 
 EmptyCard.propTypes = {
-  textContent: PropTypes.string.isRequirred,
+  textContent: PropTypes.string.isRequired,
 };
 
 export default EmptyCard;

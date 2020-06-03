@@ -1,11 +1,15 @@
 import { Fragment } from "react";
 
 import Items from "../components/items/Items";
-import ItemsSection from "../components/items/ItemsSection";
 import Hero from "../components/hero/hero";
 import Button from "../components/UI/Button";
 import TopBrands from "../components/TopBrands";
 import { useFetchUser } from "../hooks/useFetchUser";
+import WeekSelection from "../components/homeSections/WeekSelection";
+import WomenSelection from "../components/homeSections/WomenSelection";
+import MenSelection from "../components/homeSections/MenSelection";
+import KidsSelection from "../components/homeSections/KidsSelection";
+import HomeSelection from "../components/homeSections/HomeSelection";
 
 const Home = () => {
   const currentUser = useFetchUser();
@@ -28,8 +32,12 @@ const Home = () => {
         </Hero>
       )}
       <TopBrands />
-      <ItemsSection />
-      {/* <Items /> */}
+      <WeekSelection />
+      <WomenSelection />
+      <MenSelection />
+      <KidsSelection />
+      <HomeSelection />
+      <Items />
     </Fragment>
   );
 };
