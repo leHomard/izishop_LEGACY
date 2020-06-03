@@ -2,7 +2,6 @@ import { Fragment } from "react";
 
 import Items from "../components/items/Items";
 import Hero from "../components/hero/hero";
-import Button from "../components/UI/Button";
 import TopBrands from "../components/TopBrands";
 import { useFetchUser } from "../hooks/useFetchUser";
 import WeekSelection from "../components/homeSections/WeekSelection";
@@ -21,14 +20,25 @@ const Home = () => {
           text="Vends et achete des vetements plus facilement !"
           value="Inscrivez-vous!"
         >
-          <h3>Bienvenue sur izishop !</h3>
-          <p>Vendre et acheter plus facilement !</p>
-          <Button
-            btnvalue="Inscrivez vous"
-            onClick={() => {}}
-            type="primary"
-            shape="round"
-          />
+          <h3>
+            Vendre et acheter plus facilement
+            <br /> sur Izishop !
+            <br />
+          </h3>
+          {/* <p>L'application mobile est disponile sur :</p> */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img style={{ width: "150px" }} src="../static/appstore.png" />
+            <img
+              style={{ width: "150px", height: "64.34px" }}
+              src="../static/googleplay.png"
+            />
+          </div>
         </Hero>
       )}
       <TopBrands />
