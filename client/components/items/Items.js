@@ -33,7 +33,7 @@ const Items = () => {
         <CardItem
           key={el.id}
           id={el.id}
-          username={el.userName}
+          username="Omar"
           nbInterested={el.nbInterested}
           price={el.price}
           brand={el.brand}

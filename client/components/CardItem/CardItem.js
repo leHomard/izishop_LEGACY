@@ -17,10 +17,11 @@ const CardItem = ({
   imgUrl,
   loading,
   id,
+  small,
 }) => {
   return (
     <Link href={`product/[id]`} as={`product/${id}`}>
-      <CardItemContainer>
+      <CardItemContainer small={small}>
         <Card
           style={{ height: "100%" }}
           loading={loading}
@@ -40,12 +41,13 @@ const CardItem = ({
 };
 
 CardItem.propTypes = {
-  username: PropTypes.string,
+  username: PropTypes.string.isRequired,
   nbInterested: PropTypes.number,
   price: PropTypes.number.isRequired,
   brand: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
+  small: PropTypes.bool,
 };
 
 export default CardItem;

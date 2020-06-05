@@ -13,7 +13,7 @@ const CardHeader = ({ username, nbInterested }) => {
           size="small"
           icon={<UserOutlined />}
         />
-        <span className="user--name">omar</span>
+        <span className="user--name">{username}</span>
       </div>
       <span className="likes">
         {nbInterested}

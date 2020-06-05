@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const CardItemContainer = styled.div`
-  width: 250px;
+  width: ${(props) => (props.small ? "215px" : "250px")};
   height: 445px;
   display: table;
   background-color: #f5f5f5;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   .ant-card {
-    border-radius: 3px;
+    border-radius: 5px;
   }
   .ant-card-head {
     padding: 0;
