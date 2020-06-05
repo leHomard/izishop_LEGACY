@@ -7,10 +7,14 @@ const ItemsList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-template-rows: auto;
   justify-items: center;
-  gap: 2.5rem 1.2rem;
+  margin: 0 auto;
+  margin-left: ${(props) => (props.small ? "-8px" : "0")};
+  gap: ${(props) => (props.small ? "2.5rem 0.2rem" : "2.5rem 1.2rem")};
 `;
 
 export const ItemsSectionContainer = styled.div`
+  width: ${(props) => (props.small ? "90%" : "100%")};
+  margin: 0 auto;
   padding: 0 0 5rem 0;
   .section--header {
     display: flex;

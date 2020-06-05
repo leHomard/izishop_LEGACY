@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import CardItemContainer, { EmptyCardContent } from "./styles";
 
-const EmptyCard = ({ textContent }) => {
+const EmptyCard = ({ textContent, small }) => {
   return (
-    <CardItemContainer>
+    <CardItemContainer small={small}>
       <EmptyCardContent>
         <p>{textContent}</p>
       </EmptyCardContent>
@@ -15,6 +15,7 @@ const EmptyCard = ({ textContent }) => {
 
 EmptyCard.propTypes = {
   textContent: PropTypes.string.isRequired,
+  small: PropTypes.bool,
 };
 
 export default EmptyCard;

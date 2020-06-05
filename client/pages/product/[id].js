@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import styled from "styled-components";
@@ -6,6 +6,9 @@ import gql from "graphql-tag";
 
 import GridGallery from "../../components/UI/GridGallery";
 import ItemInfoCard from "../../components/items/ItemInfoCard";
+import ProductUserBar from "../../components/ProductUserBar";
+import PublisherItemsSection from "../../components/itemsSections/PublisherItemsSection";
+import SimilarItemsSection from "../../components/itemsSections/SimilarItemsSection";
 
 const ItemContainer = styled.div`
   width: 100%;
@@ -28,7 +31,6 @@ const QUERY_GET_BY_PRODUCT_ID = gql`
       color
       type
       categories
-      imagesUrl
       nbViews
       nbInterested
       description
@@ -92,25 +94,34 @@ const Product = () => {
   const item = data && data.getItemById;
 
   // Grid Gallery needs those infos in an object
-  const itemPhotos =
-    data &&
-    item.imagesUrl.map((i) => {
-      return {
-        src: i,
-        thumbnail: i,
-        thumbnailWidth: 320,
-        thumbnailHeight: 320,
-      };
-    });
+  // const itemPhotos =
+  //   data &&
+  //   item.imagesUrl.map((i) => {
+  //     return {
+  //       src: i,
+  //       thumbnail: i,
+  //       thumbnailWidth: 320,
+  //       thumbnailHeight: 320,
+  //     };
+  //   });
 
   if (error) return <div>Erreur...</div>;
   if (loading) return <div>Chargement...</div>;
   if (item) {
     return (
-      <ItemContainer>
-        <GridGallery photos={images} />
-        <ItemInfoCard item={item} />
-      </ItemContainer>
+      <Fragment>
+        <ItemContainer>
+          <GridGallery photos={images} />
+          <ItemInfoCard item={item} />
+        </ItemContainer>
+        <ProductUserBar
+          userName={item.user.userName}
+          btnValue="Voir le profile"
+          nbFollowers={6}
+        />
+        <PublisherItemsSection userName={item.user.userName} small />
+        <SimilarItemsSection small />
+      </Fragment>
     );
   } else return <div>Aucun produit trouvé !</div>;
 };

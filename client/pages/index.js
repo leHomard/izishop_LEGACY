@@ -4,11 +4,11 @@ import Items from "../components/items/Items";
 import Hero from "../components/hero/hero";
 import TopBrands from "../components/TopBrands";
 import { useFetchUser } from "../hooks/useFetchUser";
-import WeekSelection from "../components/homeSections/WeekSelection";
-import WomenSelection from "../components/homeSections/WomenSelection";
-import MenSelection from "../components/homeSections/MenSelection";
-import KidsSelection from "../components/homeSections/KidsSelection";
-import HomeSelection from "../components/homeSections/HomeSelection";
+import WeekSelection from "../components/itemsSections/WeekSelection";
+import WomenSelection from "../components/itemsSections/WomenSelection";
+import MenSelection from "../components/itemsSections/MenSelection";
+import KidsSelection from "../components/itemsSections/KidsSelection";
+import HomeSelection from "../components/itemsSections/HomeSelection";
 
 const Home = () => {
   const currentUser = useFetchUser();
