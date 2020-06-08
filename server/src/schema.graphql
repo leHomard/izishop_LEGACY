@@ -33,8 +33,12 @@ type Mutation {
 
 type Query {
   allItems: [Item]!
-  getItemById(id: ID!): Item!
   recentItems: [Item]!
+  womenSectionItems: [Item]!
+  menSectionItems: [Item]!
+  childrenSectionItems: [Item]!
+  homeSectionItems: [Item]!
+  getItemById(id: ID!): Item!
   me: User
 }
 

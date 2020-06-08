@@ -33,6 +33,7 @@ const QUERY_GET_BY_PRODUCT_ID = gql`
       categories
       nbViews
       nbInterested
+      imagesUrl
       description
       user {
         userName
@@ -94,16 +95,16 @@ const Product = () => {
   const item = data && data.getItemById;
 
   // Grid Gallery needs those infos in an object
-  // const itemPhotos =
-  //   data &&
-  //   item.imagesUrl.map((i) => {
-  //     return {
-  //       src: i,
-  //       thumbnail: i,
-  //       thumbnailWidth: 320,
-  //       thumbnailHeight: 320,
-  //     };
-  //   });
+  const itemPhotos =
+    data &&
+    item.imagesUrl.map((i) => {
+      return {
+        src: i,
+        thumbnail: i,
+        thumbnailWidth: 320,
+        thumbnailHeight: 320,
+      };
+    });
 
   if (error) return <div>Erreur...</div>;
   if (loading) return <div>Chargement...</div>;
@@ -111,7 +112,7 @@ const Product = () => {
     return (
       <Fragment>
         <ItemContainer>
-          <GridGallery photos={images} />
+          <GridGallery photos={itemPhotos} />
           <ItemInfoCard item={item} />
         </ItemContainer>
         <ProductUserBar

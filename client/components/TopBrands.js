@@ -1,5 +1,6 @@
 import { Avatar } from "antd";
 import styled from "styled-components";
+import { Fragment } from "react";
 
 const StyledTopBrands = styled.div`
   display: flex;
@@ -56,18 +57,22 @@ const TopBrands = () => {
       <h3>Les marques du moment</h3>
       <div className="top--brands--avatar">
         {brands.map((brand, i) => (
-          <Avatar
-            key={i}
-            style={{
-              backgroundColor: colors[i],
-              color: "black",
-              fontSize: "12px",
-              marginRight: "1rem",
-            }}
-            size={124}
-          >
-            {brand}
-          </Avatar>
+          <Fragment>
+            <a>
+              <Avatar
+                key={i}
+                style={{
+                  backgroundColor: colors[i],
+                  color: "black",
+                  fontSize: "12px",
+                  marginRight: "1rem",
+                }}
+                size={124}
+              >
+                {brand}
+              </Avatar>
+            </a>
+          </Fragment>
         ))}
       </div>
     </StyledTopBrands>

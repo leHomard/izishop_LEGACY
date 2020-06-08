@@ -28,6 +28,7 @@ const CardItem = ({
           title={<CardHeader username={username} nbInterested={nbInterested} />}
           hoverable
           cover={<img alt="image" src={imgUrl} />}
+          bodyStyle={{ height: "50px" }}
         >
           <Meta
             title={price + " Dhs"}
