@@ -1,11 +1,9 @@
 // this file connectes to the remote prisma db
 // and gives the ability to query it
 
-const { Prisma } = require("prisma-binding");
+const { PrismaClient } = require("@prisma/cli");
 
-const db = new Prisma({
-  typeDefs: "src/generated/prisma.graphql",
-  endpoint: process.env.PRISMA_ENDPOINT,
+const db = new PrismaClient({
   secret: process.env.PRISMA_SECRET,
   debug: false,
 });
