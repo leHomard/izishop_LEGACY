@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://tjglrqezooahmn:aec1eb59456ff23ed564c5fcc7e755a96ae783aefc054fdb26d81b194313bdaf@ec2-54-75-244-161.eu-west-1.compute.amazonaws.com:5432/d7k6idhljbai49"
+}
+
+model Item {
+  content    String?
+  createdAt  DateTime @default(now())
+  id         Int      @default(autoincrement()) @id
+  published  Boolean  @default(false)
+  title      String
+  userId     Int
+  Item       Item     @relation("ItemToItem_userId", fields: [userId], references: [id])
+  other_Item Item[]   @relation("ItemToItem_userId")
+}
+
+model User {
+  email String  @unique
+  id    Int     @default(autoincrement()) @id
+  name  String?
+}
