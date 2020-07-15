@@ -1,74 +1,70 @@
-// enums
+type User {
+  id: ID! @id
+  firstName: String
+  lastName: String
+  password: String!
+  token: String @unique
+  tempToken: String @unique
+  resetTokenExpiry: Float
+  userName: String @unique
+  email: String! @unique
+  profilePicture: String
+  location: Location
+  items: [Item]
+  isAdmin: Boolean! @default(value: false)
+  isVerified: Boolean @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Location {
+  id: ID! @id
+  number: Int!
+  street: String!
+  city: String!
+  country: String!
+  postalCode: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
 enum Category {
-    WOMEN
-    MEN
-    CHILDREN
-    HOME
+  WOMEN
+  MEN
+  CHILDREN
+  HOME
 }
 
 enum Type {
-    CLOTHES
-    SHOES
-    ACCESSORIES
-    DECORATION
+  CLOTHES
+  SHOES
+  ACCESSORIES
+  DECORATION
 }
 
 enum Condition {
-    NEW
-    VG_CONDITION
-    G_CONDITION
+  NEW
+  VG_CONDITION
+  G_CONDITION
 }
 
-// data model
-model User {
-    id               String
-    firstName        String?
-    lastName         String?
-    password         String
-    token            String     @unique
-    tempToken        String?    @unique
-    resetTokenExpiry Float?
-    userName         String     @unique
-    email            String     @unique
-    profilePicture   String?
-    location         Location[]
-    items            Item[]
-    isAdmin          Boolean    @default(value: false)
-    isVerified       Boolean    @default(value: false)
-    createdAt        DateTime   @default(now())
-    updatedAt        DateTime   @default(now())
-}
-
-model Location {
-    id         String   @id
-    number     Int
-    street     String
-    city       String
-    country    String
-    postalCode Int
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @default(now())
-    User       User?    @relation(fields: [userToken], references: [token])
-    userToken  String?
-}
-
-model Item {
-    id           String     @id
-    title        String
-    description  String
-    imagesUrl    String
-    thumbnail    String
-    price        Float
-    user         User[]
-    condition    Condition?
-    type         Type
-    categories   Category
-    size         String
-    color        String
-    brand        String
-    nbViews      Int        @default(0)
-    parcelType   String?
-    nbInterested Int        @default(0)
-    createdAt    DateTime   @default(now())
-    updatedAt    DateTime   @default(now())
+type Item {
+  id: ID! @id @unique
+  title: String!
+  description: String!
+  imagesUrl: [String] @scalarList(strategy: RELATION)
+  thumbnail: String!
+  price: Float!
+  user: User
+  condition: [Condition]! @scalarList(strategy: RELATION)
+  type: [Type]! @scalarList(strategy: RELATION)
+  categories: [Category]! @scalarList(strategy: RELATION)
+  size: String
+  color: String!
+  brand: String!
+  nbViews: Int
+  parcelType: String!
+  nbInterested: Int
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
