@@ -41,52 +41,53 @@ enum ParcelType {
 
 // Models
 model User {
-  id    String     @default(cuid()) @id
-  email String  @unique
-  firstname String?
-  lastname String?
-  password String
-  username String? @unique
-  token String? @unique
-  tempToken String? @unique
+  id               String   @default(cuid()) @id
+  email            String   @unique
+  firstname        String?
+  lastname         String?
+  password         String
+  username         String?  @unique
+  token            String?  @unique
+  tempToken        String?  @unique
   resetTokenExpiry Float?
-  profilePicture String?
-  location Location @relation(fields: [id], references: [id])
-  items Item?
-  role Role
-  isVerified Boolean @default(value: false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  profilePicture   String?
+  location         Location @relation(fields: [id], references: [id])
+  items            Item?
+  role             Role
+  isVerified       Boolean  @default(value: false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now())
 }
 
 model Item {
-  id String @default(cuid()) @id
-  title String
+  id          String      @default(cuid()) @id
+  title       String
   description String
-  images String[]
-  thumbnail String
-  price Float
-  user User @relation(fields: [id], references: [id])
-  condition Condition?
-  type Type[]
-  categories Category[]
-  size String
-  color String
-  brand String
-  nbViews Int?
-  nbLiked Int?
-  parcelType ParcelType?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  images      String[]
+  thumbnail   String
+  price       Float
+  user        User        @relation(fields: [id], references: [id])
+  condition   Condition?
+  type        Type[]
+  categories  Category[]
+  size        String
+  color       String
+  brand       String
+  nbViews     Int?
+  nbLiked     Int?
+  parcelType  ParcelType?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now())
 }
 
 model Location {
-  id String @default(cuid()) @id
-  number Int
-  street String
-  city String
-  country String
+  id         String   @default(cuid()) @id
+  number     Int
+  street     String
+  city       String
+  country    String
   postalCode Int
-  createdAt DateTime @default(now()) 
-  updatedAt DateTime @default(now()) 
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  User       User[]
 }

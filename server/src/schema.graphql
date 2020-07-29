@@ -1,45 +1,99 @@
-# import * from './generated/prisma.graphql'
+# source: http://localhost:4444/
+# timestamp: Wed Jul 29 2020 06:43:08 GMT+0200 (Central European Summer Time)
 
-type SuccessMessage {
-  message: String
+input CategoriesInput {
+  set: [Category!]
+}
+
+enum Category {
+  WOMEN
+  MEN
+  CHILDREN
+  HOME
+}
+
+enum Condition {
+  NEW
+  VG_CONDITION
+  G_CONDITION
+}
+
+input ConditionInput {
+  set: [Condition!]
+}
+
+scalar DateTime
+
+input ImagesUrlInput {
+  set: [String!]
+}
+
+type Item implements Node {
+  id: ID!
+  title: String!
+  description: String!
+  imagesUrl: [String!]!
+  thumbnail: String!
+  price: Float!
+  user: User
+  condition: [Condition!]!
+  type: [Type!]!
+  categories: [Category!]!
+  size: String
+  color: String!
+  brand: String!
+  nbViews: Int
+  parcelType: String!
+  nbInterested: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Location implements Node {
+  id: ID!
+  number: Int!
+  street: String!
+  city: String!
+  country: String!
+  postalCode: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Mutation {
-  createItem(
-    brand: String!
-    title: String!
-    description: String!
-    categories: CategoriesInput!
-    type: TypeInput
-    size: String
-    color: String!
-    condition: ConditionInput!
-    price: Float!
-    user: UserInput!
-    parcelType: String!
-    imagesUrl: ImagesUrlInput!
-    thumbnail: String!
-  ): Item!
-  signup(
-    userName: String!
-    email: String!
-    password: String!
-    tempToken: String
-  ): User!
+  createItem(brand: String!, title: String!, description: String!, categories: CategoriesInput!, type: TypeInput, size: String, color: String!, condition: ConditionInput!, price: Float!, user: UserInput!, parcelType: String!, imagesUrl: ImagesUrlInput!, thumbnail: String!): Item!
+  signup(userName: String!, email: String!, password: String!, tempToken: String): User!
   verifyAccount(email: String!, tempToken: String!): User!
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
 }
 
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
 type Query {
   allItems: [Item]!
-  recentItems: [Item]!
-  womenSectionItems: [Item]!
-  menSectionItems: [Item]!
-  childrenSectionItems: [Item]!
-  homeSectionItems: [Item]!
   getItemById(id: ID!): Item!
+  recentItems: [Item]!
   me: User
+}
+
+type SuccessMessage {
+  message: String
+}
+
+enum Type {
+  CLOTHES
+  SHOES
+  ACCESSORIES
+  DECORATION
+}
+
+input TypeInput {
+  set: [Type!]
 }
 
 type User {
@@ -55,22 +109,6 @@ input UserConnectInput {
   email: String
 }
 
-input ImagesUrlInput {
-  set: [String!]
-}
-
 input UserInput {
   connect: UserConnectInput
-}
-
-input ConditionInput {
-  set: [Condition!]
-}
-
-input TypeInput {
-  set: [Type!]
-}
-
-input CategoriesInput {
-  set: [Category!]
 }
