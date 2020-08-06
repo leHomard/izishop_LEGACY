@@ -51,37 +51,37 @@ model User {
   tempToken        String?  @unique
   resetTokenExpiry Float?
   profilePicture   String?
-  location         Location @relation(fields: [id], references: [id])
+  // location         Location @relation(fields: [id], references: [id])
   items            Item?
-  role             Role
+  role             Role     @default(USER)
   isVerified       Boolean  @default(value: false)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @default(now())
 }
 
 model Item {
-  id          String      @default(cuid()) @id
+  id          String     @default(cuid()) @id
   title       String
   description String
   images      String[]
   thumbnail   String
   price       Float
   user        User        @relation(fields: [id], references: [id])
-  condition   Condition?
-  type        Type[]
-  categories  Category[]
+  condition   Condition   @default(NEW)
+  type        Type        @default(CLOTHES)
+  categories  Category    @default(MEN)
   size        String
   color       String
   brand       String
   nbViews     Int?
   nbLiked     Int?
-  parcelType  ParcelType?
+  parcelType  ParcelType  @default(SMALL)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @default(now())
 }
 
 model Location {
-  id         String   @default(cuid()) @id
+  id         String  @default(cuid()) @id
   number     Int
   street     String
   city       String

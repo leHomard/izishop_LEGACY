@@ -112,12 +112,13 @@ const mutations = {
   },
 
   // TODO check if the user is logged in
-  async createItem(parent, args, context, info) {
-    const item = await context.db.mutation.createItem(
+  async createItem(parent, args, context) {
+    console.log("createItem -> args", {...args})
+    
+    const item = await context.prisma.item.create(
       {
         data: { ...args },
       },
-      info
     );
     return item;
   },

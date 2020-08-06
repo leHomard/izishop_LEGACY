@@ -24,7 +24,7 @@ input ConditionInput {
 
 scalar DateTime
 
-input ImagesUrlInput {
+input ImagesInput {
   set: [String!]
 }
 
@@ -32,7 +32,7 @@ type Item implements Node {
   id: ID!
   title: String!
   description: String!
-  imagesUrl: [String!]!
+  images: [String!]!
   thumbnail: String!
   price: Float!
   user: User
@@ -61,7 +61,7 @@ type Location implements Node {
 }
 
 type Mutation {
-  createItem(brand: String!, title: String!, description: String!, categories: CategoriesInput!, type: TypeInput, size: String, color: String!, condition: ConditionInput!, price: Float!, user: UserInput!, parcelType: String!, imagesUrl: ImagesUrlInput!, thumbnail: String!): Item!
+  createItem(brand: String!, title: String!, description: String!, categories: CategoriesInput!, type: TypeInput, size: String, color: String!, condition: ConditionInput!, price: Float!, user: UserInput!, parcelType: String!, images: ImagesInput!, thumbnail: String!): Item!
   signup(userName: String!, email: String!, password: String!, tempToken: String): User!
   verifyAccount(email: String!, tempToken: String!): User!
   signin(email: String!, password: String!): User!
