@@ -16,7 +16,7 @@ const mutations = {
     // generate the temp token
     const randomBytesPromisifed = promisify(randomBytes);
     const tempToken = (await randomBytesPromisifed(20)).toString("hex");
-    const newUser = await context.db.mutation.createUser(
+    const newUser = await context.prisma.user.create(
       {
         data: {
           ...args,
@@ -80,7 +80,7 @@ const mutations = {
 
   async signin(parent, { email, password }, context, info) {
     // check if the user exist and his password
-    const user = await context.db.query.user({ where: { email } });
+    const user = await context.prisma.user.findOne({ where: { email } });
 
     // return erro if no user found
     if (!user) {
@@ -113,11 +113,22 @@ const mutations = {
 
   // TODO check if the user is logged in
   async createItem(parent, args, context) {
-    console.log("createItem -> args", {...args})
-    
     const item = await context.prisma.item.create(
       {
-        data: { ...args },
+        data: { 
+          title: args.title,
+          description: args.description,
+          images: args.images,
+          thumbnail: args.thumbnail,
+          price: args.price,
+          user: args.user,
+          type: args.type.set[0],
+          categories: args.categories.set[0],
+          condition: args.condition.set[0],
+          size: args.size,
+          color: args.color,
+          brand: args.brand
+         },
       },
     );
     return item;

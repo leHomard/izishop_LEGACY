@@ -1,8 +1,7 @@
 const Query = {
   // query to fetch all items of all categories
   allItems: async (parent, args, ctx) => {
-  console.log("ctx", ctx)
-    const items = await ctx.prisma.items.count()
+    const items = await ctx.prisma.item.count();
     return items;
   },
 

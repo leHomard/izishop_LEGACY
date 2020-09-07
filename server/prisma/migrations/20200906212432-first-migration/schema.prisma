@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+// Enums
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Type {
+  CLOTHES
+  SHOES
+  ACCESSORIES
+  DECORATION
+}
+
+enum Condition {
+  NEW
+  VG_CONDITION
+  G_CONDITION
+}
+
+enum Category {
+  WOMEN
+  MEN
+  CHILDREN
+  HOME
+}
+
+enum ParcelType {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+// Models
+model User {
+  id               String   @default(cuid()) @id
+  email            String   @unique
+  firstname        String?
+  lastname         String?
+  password         String
+  username         String?  @unique
+  token            String?  @unique
+  tempToken        String?  @unique
+  resetTokenExpiry Float?
+  profilePicture   String?
+  // location         Location @relation(fields: [id], references: [id])
+  items            Item?
+  role             Role     @default(USER)
+  isVerified       Boolean  @default(value: false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now())
+}
+
+model Item {
+  id          String     @default(cuid()) @id
+  title       String
+  description String
+  images      String[]
+  thumbnail   String
+  price       Float
+  user        User        @relation(fields: [id], references: [id])
+  condition   Condition   @default(NEW)
+  type        Type        @default(CLOTHES)
+  categories  Category    @default(MEN)
+  size        String
+  color       String
+  brand       String
+  nbViews     Int?
+  nbLiked     Int?
+  parcelType  ParcelType  @default(SMALL)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now())
+}
+
+model Location {
+  id         String  @default(cuid()) @id
+  number     Int
+  street     String
+  city       String
+  country    String
+  postalCode Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  User       User[]
+}
