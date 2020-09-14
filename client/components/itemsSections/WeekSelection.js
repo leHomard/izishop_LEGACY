@@ -10,7 +10,7 @@ const RECENTLY_ADDED_ITEMS = gql`
       id
       brand
       user {
-        userName
+        username
       }
       price
       size

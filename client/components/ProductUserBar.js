@@ -29,13 +29,13 @@ const StyledSection = styled.section`
   }
 `;
 
-const ProductUserBar = ({ userName, btnValue, nbFollowers }) => {
+const ProductUserBar = ({ username, btnValue, nbFollowers }) => {
   return (
     <StyledSection>
       <div className="user--info">
         <Avatar icon={<UserOutlined />} size={80} />
         <p>
-          <a>{userName}</a>
+          <a>{username}</a>
           <Rate disabled allowHalf defaultValue={4.5} />
           <span>{nbFollowers} abonnés</span>
         </p>
@@ -55,7 +55,7 @@ const ProductUserBar = ({ userName, btnValue, nbFollowers }) => {
 };
 
 ProductUserBar.propTypes = {
-  userName: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   btnValue: PropTypes.string.isRequired,
   nbFollowers: PropTypes.number,
 };

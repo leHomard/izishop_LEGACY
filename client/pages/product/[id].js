@@ -33,10 +33,10 @@ const QUERY_GET_BY_PRODUCT_ID = gql`
       categories
       nbViews
       nbInterested
-      imagesUrl
+      images
       description
       user {
-        userName
+        username
       }
     }
   }
@@ -93,11 +93,12 @@ const Product = () => {
     variables: { id: query.id },
   });
   const item = data && data.getItemById;
+  console.log("Product -> data", data)
 
   // Grid Gallery needs those infos in an object
   const itemPhotos =
     data &&
-    item.imagesUrl.map((i) => {
+    item.images.map((i) => {
       return {
         src: i,
         thumbnail: i,
@@ -116,11 +117,11 @@ const Product = () => {
           <ItemInfoCard item={item} />
         </ItemContainer>
         <ProductUserBar
-          userName={item.user.userName}
+          username={item.user.username}
           btnValue="Voir le profile"
           nbFollowers={6}
         />
-        <PublisherItemsSection userName={item.user.userName} small />
+        <PublisherItemsSection username={item.user.username} small />
         <SimilarItemsSection small />
       </Fragment>
     );

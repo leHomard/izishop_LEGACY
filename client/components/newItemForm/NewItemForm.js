@@ -32,9 +32,9 @@ const CREATE_ITEM_MUTATION = gql`
       size: $size
       color: $color
       condition: { set: $condition }
-      imagesUrl: { set: $urls }
+      images: { set: $urls }
       parcelType: $parcelType
-      user: { connect: { userName: "omar" } }
+      user: { connect: { username: "omar" } }
       price: $price
     ) {
       id

@@ -5,7 +5,7 @@ export const QUERY_USER_INFO = gql`
   query QUERY_USER_INFO {
     me {
       id
-      userName
+      username
       email
       isAdmin
     }

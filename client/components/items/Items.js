@@ -15,15 +15,17 @@ const ALL_ITEMS_QUERY = gql`
       size
       nbInterested
       user {
-        userName
+        username
       }
-      imagesUrl
+      images
     }
   }
 `;
 
 const Items = () => {
-  const { data, loading, error } = useQuery(ALL_ITEMS_QUERY);
+  const { data, loading, error } = useQuery(ALL_ITEMS_QUERY);  
+  console.log("Items -> data", data)
+
   if (!data || error) return <p>error...</p>;
   if (loading) return <p>Loading...</p>;
 
@@ -38,7 +40,7 @@ const Items = () => {
           price={el.price}
           brand={el.brand}
           size={el.size}
-          imgUrl={el.imagesUrl[0]}
+          imgUrl={el.images[0]}
         />
       ))}
     </ItemsList>

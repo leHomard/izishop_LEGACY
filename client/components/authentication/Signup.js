@@ -24,9 +24,9 @@ const SIGNUP_MUTATION = gql`
     $email: String!
     $password: String!
   ) {
-    signup(userName: $username, email: $email, password: $password) {
+    signup(username: $username, email: $email, password: $password) {
       id
-      userName
+      username
       email
     }
   }

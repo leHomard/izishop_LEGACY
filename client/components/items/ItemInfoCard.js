@@ -7,10 +7,10 @@ import ItemInfoProperties from "./ItemInfoProperties";
 import ItemInfoCardActions from "./ItemInfoCardActions";
 
 export const ItemInfoCard = ({ item }) => {
-  const { userName } = item.user;
+  const { username } = item.user;
   return (
     <StyledCard>
-      <ItemInfoHeader userName={userName} publishedAt="2 jours" />
+      <ItemInfoHeader username={username} publishedAt="2 jours" />
       <hr />
       <ItemInfoProperties item={item} />
       <hr />
