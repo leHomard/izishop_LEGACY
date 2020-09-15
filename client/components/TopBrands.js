@@ -57,7 +57,7 @@ const TopBrands = () => {
       <h3>Les marques du moment</h3>
       <div className="top--brands--avatar">
         {brands.map((brand, i) => (
-          <Fragment>
+          <Fragment key={i}>
             <a>
               <Avatar
                 key={i}

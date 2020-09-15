@@ -10,9 +10,11 @@ const Query = {
     const weekAgo = new Date();
     weekAgo.setDate(weekAgo.getDate() - 7);
 
-    const items = await ctx.db.query.items({
+    const items = await ctx.prisma.item.findMany({
       where: {
-        createdAt_gte: weekAgo,
+        createdAt: {
+          gte: weekAgo,
+        }
       },
     });
     return items;
@@ -29,12 +31,13 @@ const Query = {
 
   // get user info by userId
   me(parent, args, context, info) {
-    if (!context.request.userId) {
+    console.log("me -> info", info)
+    if (!context.request.id) {
       return null;
     }
-    return context.db.query.user(
+    return context.prisma.user.findOne(
       {
-        where: { id: context.request.userId },
+        where: { id: context.request.id },
       },
       info
     );

@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgres://tjglrqezooahmn:aec1eb59456ff23ed564c5fcc7e755a96ae783aefc054fdb26d81b194313bdaf@ec2-54-75-244-161.eu-west-1.compute.amazonaws.com:5432/d7k6idhljbai49"
+  url = "***"
 }
 
 // Enums

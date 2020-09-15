@@ -24,7 +24,6 @@ const ALL_ITEMS_QUERY = gql`
 
 const Items = () => {
   const { data, loading, error } = useQuery(ALL_ITEMS_QUERY);  
-  console.log("Items -> data", data)
 
   if (!data || error) return <p>error...</p>;
   if (loading) return <p>Loading...</p>;

@@ -14,7 +14,8 @@ const Home = () => {
   const currentUser = useFetchUser();
   return (
     <Fragment>
-      {currentUser && !currentUser.data && (
+      {/* {!currentUser && !currentUser.data && ( */}
+      { !currentUser && (
         <Hero
           imgUrl="https://www.savethestudent.org/uploads/sell-clothes-online-2.jpg"
           text="Vends et achete des vetements plus facilement !"

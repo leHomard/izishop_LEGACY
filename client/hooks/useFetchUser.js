@@ -14,7 +14,6 @@ export const QUERY_USER_INFO = gql`
 
 export const useFetchUser = () => {
   const { data, loading, error } = useQuery(QUERY_USER_INFO);
-
   if (data) {
     return {
       data: data.me,
